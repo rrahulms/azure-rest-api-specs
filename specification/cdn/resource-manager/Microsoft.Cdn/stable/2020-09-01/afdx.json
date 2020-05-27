@@ -15,13 +15,31 @@
   "produces": [
     "application/json"
   ],
+  "security": [
+    {
+      "azure_auth": [
+        "user_impersonation"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "azure_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "flow": "implicit",
+      "description": "Azure Active Directory OAuth2 Flow.",
+      "scopes": {
+        "user_impersonation": "impersonate your user account"
+      }
+    }
+  },
   "paths": {
     "/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/profiles": {
       "get": {
         "tags": [
           "Profiles"
         ],
-        "description": "Lists all of the CDN profiles within an Azure subscription.",
+        "description": "Lists all of the AFDX profiles within an Azure subscription.",
         "operationId": "Profiles_List",
         "x-ms-examples": {
           "Profiles_List": {
@@ -60,7 +78,7 @@
         "tags": [
           "Profiles"
         ],
-        "description": "Lists all of the CDN profiles within a resource group.",
+        "description": "Lists all of the AFDX profiles within a resource group.",
         "operationId": "Profiles_ListByResourceGroup",
         "x-ms-examples": {
           "Profiles_ListByResourceGroup": {
@@ -102,7 +120,7 @@
         "tags": [
           "Profiles"
         ],
-        "description": "Gets a CDN profile with the specified profile name under the specified subscription and resource group.",
+        "description": "Gets a AFDX profile with the specified profile name under the specified subscription and resource group.",
         "operationId": "Profiles_Get",
         "x-ms-examples": {
           "Profiles_Get": {
@@ -116,7 +134,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -146,7 +164,7 @@
         "tags": [
           "Profiles"
         ],
-        "description": "Creates a new CDN profile with a profile name under the specified subscription and resource group.",
+        "description": "Creates a new AFDX profile with a profile name under the specified subscription and resource group.",
         "operationId": "Profiles_Create",
         "x-ms-examples": {
           "Profiles_Create": {
@@ -160,7 +178,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -212,7 +230,7 @@
         "tags": [
           "Profiles"
         ],
-        "description": "Updates an existing CDN profile with the specified profile name under the specified subscription and resource group.",
+        "description": "Updates an existing AFDX profile with the specified profile name under the specified subscription and resource group.",
         "operationId": "Profiles_Update",
         "x-ms-examples": {
           "Profiles_Update": {
@@ -226,7 +244,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -272,7 +290,7 @@
         "tags": [
           "Profiles"
         ],
-        "description": "Deletes an existing CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and domains.",
+        "description": "Deletes an existing AFDX profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and domains.",
         "operationId": "Profiles_Delete",
         "x-ms-examples": {
           "Profiles_Delete": {
@@ -286,7 +304,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -333,7 +351,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -352,7 +370,7 @@
             }
           },
           "default": {
-            "description": "AFDX error response describing why the operation failed.",
+            "description": "CDN error response describing why the operation failed.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -368,7 +386,7 @@
         "tags": [
           "Domains"
         ],
-        "description": "TODO",
+        "description": "Gets an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
         "operationId": "Domains_Get",
         "x-ms-examples": {
           "Domains_Get": {
@@ -382,14 +400,14 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
           {
             "name": "domainName",
             "in": "path",
-            "description": "TODO",
+            "description": "Name of the domain under the profile which is unique globally.",
             "required": true,
             "type": "string"
           },
@@ -433,14 +451,14 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
           {
             "name": "domainName",
             "in": "path",
-            "description": "TODO",
+            "description": "Name of the domain under the profile which is unique globally",
             "required": true,
             "type": "string"
           },
@@ -506,14 +524,14 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
           {
             "name": "domainName",
             "in": "path",
-            "description": "TODO",
+            "description": "Name of the domain under the profile which is unique globally",
             "required": true,
             "type": "string"
           },
@@ -559,7 +577,7 @@
         "tags": [
           "Domains"
         ],
-        "description": "Deletes an existing CDN domain with the specified domain name under the specified subscription, resource group and profile.",
+        "description": "Deletes an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
         "operationId": "Domains_Delete",
         "x-ms-examples": {
           "Domains_Delete": {
@@ -573,7 +591,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -622,14 +640,14 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
           {
             "name": "domainName",
             "in": "path",
-            "description": "Name of the domain.",
+            "description": "Name of the domain under the profile which is unique globally.",
             "required": true,
             "type": "string"
           },
@@ -657,16 +675,16 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
       "get": {
         "tags": [
-          "Endpoints"
+          "Keys"
         ],
-        "description": "Lists existing AFDX endpoints.",
-        "operationId": "Endpoints_ListByProfile",
+        "description": "Lists existing AFDX keys.",
+        "operationId": "Keys_ListByProfile",
         "x-ms-examples": {
-          "Endpoints_ListByProfile": {
-            "$ref": "./examples/Endpoints_ListByProfile.json"
+          "Keys_ListByProfile": {
+            "$ref": "./examples/Keys_ListByProfile.json"
           }
         },
         "parameters": [
@@ -676,7 +694,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -691,11 +709,60 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/EndpointListResult"
+              "$ref": "#/definitions/KeyListResult"
             }
           },
           "default": {
-            "description": "AFDX error response describing why the operation failed.",
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints": {
+      "get": {
+        "tags": [
+          "AFDCDNEndpoints"
+        ],
+        "description": "Lists existing AFDX endpoints.",
+        "operationId": "AFDCDNEndpoints_ListByProfile",
+        "x-ms-examples": {
+          "AFDCDNEndpoints_ListByProfile": {
+            "$ref": "./examples/AFDCDNEndpoints_ListByProfile.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AFDCDNEndpointListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -709,13 +776,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}": {
       "get": {
         "tags": [
-          "Endpoints"
+          "AFDCDNEndpoints"
         ],
-        "description": "Gets an existing CDN endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
-        "operationId": "Endpoints_Get",
+        "description": "Gets an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
+        "operationId": "AFDCDNEndpoints_Get",
         "x-ms-examples": {
-          "Endpoints_Get": {
-            "$ref": "./examples/Endpoints_Get.json"
+          "AFDCDNEndpoints_Get": {
+            "$ref": "./examples/AFDCDNEndpoints_Get.json"
           }
         },
         "parameters": [
@@ -725,7 +792,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -747,7 +814,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           "default": {
@@ -760,13 +827,13 @@
       },
       "put": {
         "tags": [
-          "Endpoints"
+          "AFDCDNEndpoints"
         ],
-        "description": "Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
-        "operationId": "Endpoints_Create",
+        "description": "Creates a new AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
+        "operationId": "AFDCDNEndpoints_Create",
         "x-ms-examples": {
-          "Endpoints_Create": {
-            "$ref": "./examples/Endpoints_Create.json"
+          "AFDCDNEndpoints_Create": {
+            "$ref": "./examples/AFDCDNEndpoints_Create.json"
           }
         },
         "parameters": [
@@ -776,7 +843,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -793,7 +860,7 @@
             "description": "Endpoint properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           {
@@ -807,19 +874,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new endpoint has been created.",
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           "default": {
@@ -833,13 +900,13 @@
       },
       "patch": {
         "tags": [
-          "Endpoints"
+          "AFDCDNEndpoints"
         ],
-        "description": "Updates an existing CDN endpoint with the specified endpoint name under the specified subscription, resource group and profile. Only tags can be updated after creating an endpoint. To update origins, use the Update Origin operation. To update origin groups, use the Update Origin group operation. To update domains, use the Update Custom Domain operation.",
-        "operationId": "Endpoints_Update",
+        "description": "Updates an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile. Only tags can be updated after creating an endpoint. To update origins, use the Update Origin operation. To update origin groups, use the Update Origin group operation. To update domains, use the Update Custom Domain operation.",
+        "operationId": "AFDCDNEndpoints_Update",
         "x-ms-examples": {
-          "Endpoints_Update": {
-            "$ref": "./examples/Endpoints_Update.json"
+          "AFDCDNEndpoints_Update": {
+            "$ref": "./examples/AFDCDNEndpoints_Update.json"
           }
         },
         "parameters": [
@@ -849,7 +916,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -866,7 +933,7 @@
             "description": "Endpoint update properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/EndpointUpdateParameters"
+              "$ref": "#/definitions/AFDCDNEndpointUpdateParameters"
             }
           },
           {
@@ -880,13 +947,13 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Endpoint"
+              "$ref": "#/definitions/AFDCDNEndpoint"
             }
           },
           "default": {
@@ -900,13 +967,13 @@
       },
       "delete": {
         "tags": [
-          "Endpoints"
+          "AFDCDNEndpoints"
         ],
-        "description": "Deletes an existing CDN endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
-        "operationId": "Endpoints_Delete",
+        "description": "Deletes an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
+        "operationId": "AFDCDNEndpoints_Delete",
         "x-ms-examples": {
-          "Endpoints_Delete": {
-            "$ref": "./examples/Endpoints_Delete.json"
+          "AFDCDNEndpoints_Delete": {
+            "$ref": "./examples/AFDCDNEndpoints_Delete.json"
           }
         },
         "parameters": [
@@ -916,7 +983,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -956,11 +1023,11 @@
         "tags": [
           "Endpoints"
         ],
-        "description": "Removes a content from CDN.",
-        "operationId": "Endpoints_PurgeContent",
+        "description": "Removes a content from AFDX.",
+        "operationId": "AFDCDNEndpoints_PurgeContent",
         "x-ms-examples": {
-          "Endpoints_PurgeContent": {
-            "$ref": "./examples/Endpoints_PurgeContent.json"
+          "AFDCDNEndpoints_PurgeContent": {
+            "$ref": "./examples/AFDCDNEndpoints_PurgeContent.json"
           }
         },
         "parameters": [
@@ -970,7 +1037,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1019,11 +1086,11 @@
         "tags": [
           "Endpoints"
         ],
-        "description": "Pre-loads a content to CDN.",
-        "operationId": "Endpoints_LoadContent",
+        "description": "Pre-loads a content to AFDX.",
+        "operationId": "AFDCDNEndpoints_LoadContent",
         "x-ms-examples": {
-          "Endpoints_LoadContent": {
-            "$ref": "./examples/Endpoints_LoadContent.json"
+          "AFDCDNEndpoints_LoadContent": {
+            "$ref": "./examples/AFDCDNEndpoints_LoadContent.json"
           }
         },
         "parameters": [
@@ -1033,7 +1100,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1052,13 +1119,6 @@
             "schema": {
               "$ref": "#/definitions/LoadParameters"
             }
-          },
-          {
-              "name": "isVodManifest",
-              "in": "body",
-              "description": "True if path to the content to be loaded points to a VOD manifest file.",
-              "required": false,
-              "type": "string"
           },
           {
             "$ref": "#/parameters/subscriptionIdParameter"
@@ -1090,10 +1150,10 @@
           "DeliveryRules"
         ],
         "description": "Lists all of the existing delivery rules within an endpoint.",
-        "operationId": "Rules_ListByEndpoint",
+        "operationId": "DeliveryRules_ListByEndpoint",
         "x-ms-examples": {
           "OriginsGroups_ListByEndpoint": {
-            "$ref": "./examples/Rules_ListByEndpoint.json"
+            "$ref": "./examples/DeliveryRules_ListByEndpoint.json"
           }
         },
         "parameters": [
@@ -1103,7 +1163,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1159,7 +1219,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1217,7 +1277,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1246,7 +1306,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/DeliveryRule"
             }
           },
           "201": {
@@ -1288,7 +1348,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1362,7 +1422,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1423,7 +1483,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1472,7 +1532,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1523,7 +1583,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1596,7 +1656,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1663,7 +1723,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1686,7 +1746,7 @@
             "description": "Accepted"
           },
           "204": {
-            "description": "No Content. The request has been accepted but the origin was not found."
+            "description": "No Content. The request has been accepted but the origin group was not found."
           },
           "default": {
             "description": "CDN error response describing why the operation failed.",
@@ -1703,11 +1763,11 @@
         "tags": [
           "Origins"
         ],
-        "description": "Lists all of the existing origins within a profile.",
-        "operationId": "Origins_ListByProfile",
+        "description": "Lists all of the existing origins within a origin group.",
+        "operationId": "Origins_ListByOriginGroup",
         "x-ms-examples": {
-          "Origins_ListByProfile": {
-            "$ref": "./examples/Origins_ListByProfile.json"
+          "Origins_ListByOriginGroup": {
+            "$ref": "./examples/Origins_ListByOriginGroup.json"
           }
         },
         "parameters": [
@@ -1717,7 +1777,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1759,7 +1819,7 @@
         "tags": [
           "Origins"
         ],
-        "description": "Gets an existing origin within a profile.",
+        "description": "Gets an existing origin within an origin group.",
         "operationId": "Origins_Get",
         "x-ms-examples": {
           "Origins_Get": {
@@ -1773,7 +1833,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1787,7 +1847,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin which is unique within the profile.",
+            "description": "Name of the origin which is unique within the  origin group.",
             "required": true,
             "type": "string"
           },
@@ -1817,7 +1877,7 @@
         "tags": [
           "Origins"
         ],
-        "description": "Creates a new origin within the specified profile.",
+        "description": "Creates a new origin within the specified origin group.",
         "operationId": "Origins_Create",
         "x-ms-examples": {
           "Origins_Create": {
@@ -1831,7 +1891,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1845,7 +1905,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin that is unique within the profile.",
+            "description": "Name of the origin that is unique within the  origin group.",
             "required": true,
             "type": "string"
           },
@@ -1897,7 +1957,7 @@
         "tags": [
           "Origins"
         ],
-        "description": "Updates an existing origin within a profile.",
+        "description": "Updates an existing origin within a origin group.",
         "operationId": "Origins_Update",
         "x-ms-examples": {
           "Origins_Update": {
@@ -1911,7 +1971,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1925,7 +1985,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin which is unique within the profile.",
+            "description": "Name of the origin which is unique within the origin group.",
             "required": true,
             "type": "string"
           },
@@ -1971,7 +2031,7 @@
         "tags": [
           "Origins"
         ],
-        "description": "Deletes an existing origin within a profile.",
+        "description": "Deletes an existing origin within a origin group.",
         "operationId": "Origins_Delete",
         "x-ms-examples": {
           "Origins_Delete": {
@@ -1985,7 +2045,7 @@
           {
             "name": "profileName",
             "in": "path",
-            "description": "Name of the CDN profile which is unique within the resource group.",
+            "description": "Name of the AFDX profile which is unique within the resource group.",
             "required": true,
             "type": "string"
           },
@@ -1999,7 +2059,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin which is unique within the profile.",
+            "description": "Name of the origin which is unique within the  origin group.",
             "required": true,
             "type": "string"
           },
@@ -2032,7 +2092,7 @@
         "tags": [
           "Operations"
         ],
-        "description": "Lists all of the available CDN REST API operations.",
+        "description": "Lists all of the available AFDX REST API operations.",
         "operationId": "Operations_List",
         "x-ms-examples": {
           "Operations_List": {
@@ -2066,7 +2126,7 @@
   },
   "definitions": {
     "Profile": {
-      "description": "CDN profile is a logical grouping of endpoints that share the same settings, such as CDN provider and pricing tier.",
+      "description": "CDN profile is a logical grouping of endpoints that share the same settings, such as AFDX provider and pricing tier.",
       "type": "object",
       "allOf": [
         {
@@ -2075,7 +2135,7 @@
       ],
       "properties": {
         "sku": {
-          "description": "The pricing tier (defines a CDN provider, feature list and rate) of the CDN profile.",
+          "description": "The pricing tier (defines a AFDX provider, feature list and rate) of the AFDX profile.",
           "$ref": "#/definitions/Sku"
         },
         "properties": {
@@ -2121,7 +2181,7 @@
           "items": {
             "$ref": "#/definitions/Profile"
           },
-          "description": "List of CDN profiles within a resource group."
+          "description": "List of AFDX profiles within a resource group."
         },
         "nextLink": {
           "type": "string",
@@ -2143,8 +2203,8 @@
       },
       "x-ms-azure-resource": true
     },
-    "Endpoint": {
-      "description": "CDN endpoint is the entity within a CDN profile containing configuration information such as origin, protocol, content caching and delivery behavior. The CDN endpoint uses the URL format <endpointname>.azureedge.net.",
+    "AFDCDNEndpoint": {
+      "description": "CDN endpoint is the entity within a AFDX profile containing configuration information such as origin, protocol, content caching and delivery behavior. The AFDX endpoint uses the URL format <endpointname>.azureedge.net.",
       "type": "object",
       "allOf": [
         {
@@ -2154,18 +2214,18 @@
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/EndpointProperties"
+          "$ref": "#/definitions/AFDCDNEndpointProperties"
         }
       }
     },
-    "EndpointProperties": {
+    "AFDCDNEndpointProperties": {
       "description": "The JSON object that contains the properties required to create an endpoint.",
       "required": [
         "origins"
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/EndpointPropertiesUpdateParameters"
+          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
         }
       ],
       "properties": {
@@ -2198,16 +2258,16 @@
         }
       }
     },
-    "EndpointListResult": {
+    "AFDCDNEndpointListResult": {
       "description": "Result of the request to list endpoints. It contains a list of endpoint objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/Endpoint"
+            "$ref": "#/definitions/AFDCDNEndpoint"
           },
-          "description": "List of CDN endpoints within a profile"
+          "description": "List of AFDX endpoints within a profile"
         },
         "nextLink": {
           "type": "string",
@@ -2215,7 +2275,7 @@
         }
       }
     },
-    "EndpointUpdateParameters": {
+    "AFDCDNEndpointUpdateParameters": {
       "type": "object",
       "description": "Properties required to create or update an endpoint.",
       "properties": {
@@ -2228,12 +2288,12 @@
         },
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/EndpointPropertiesUpdateParameters"
+          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
         }
       },
       "x-ms-azure-resource": true
     },
-    "EndpointPropertiesUpdateParameters": {
+    "AFDCDNEndpointPropertiesUpdateParameters": {
       "description": "The JSON object containing endpoint update parameters.",
       "properties": {
         "domains": {
@@ -2249,7 +2309,7 @@
           "$ref": "#/definitions/ResourceReference"
         },
         "originPath": {
-          "description": "A directory path on the origin that CDN can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
+          "description": "A directory path on the origin that AFDX can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
           "type": "string"
         },
         "contentTypesToCompress": {
@@ -2260,39 +2320,34 @@
           }
         },
         "isCompressionEnabled": {
-          "description": "Indicates whether content compression is enabled on CDN. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on CDN when requested content is smaller than 1 byte or larger than 1 MB.",
+          "description": "Indicates whether content compression is enabled on AFDX. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AFDX when requested content is smaller than 1 byte or larger than 1 MB.",
           "type": "boolean"
         },
         "supportedProtocols": {
           "description": "List of supported protocols for the customer's endpoint.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/EndpointProtocols"
+            "$ref": "#/definitions/AFDCDNEndpointProtocols"
           }
         },
         "queryStringCachingBehavior": {
-          "description": "Defines how CDN caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
+          "description": "Defines how AFDX caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
           "$ref": "#/definitions/QueryStringCachingBehavior"
         },
         "optimizationType": {
-          "description": "Specifies what scenario the customer wants this CDN endpoint to optimize for, e.g. Download, Media services. With this information, CDN can apply scenario driven optimization.",
+          "description": "Specifies what scenario the customer wants this AFDX endpoint to optimize for, e.g. Download, Media services. With this information, AFDX can apply scenario driven optimization.",
           "$ref": "#/definitions/OptimizationType"
         },
         "probePath": {
-          "description": "Path to a file hosted on the origin which helps accelerate delivery of the dynamic content and calculate the most optimal routes for the CDN. This is relative to the origin path. This property is only relevant when using a single origin.",
+          "description": "Path to a file hosted on the origin which helps accelerate delivery of the dynamic content and calculate the most optimal routes for the AFDX. This is relative to the origin path. This property is only relevant when using a single origin.",
           "type": "string"
         },
         "geoFilters": {
-          "description": "List of rules defining the user's geo access within a CDN endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/",
+          "description": "List of rules defining the user's geo access within a AFDX endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/",
           "type": "array",
           "items": {
             "$ref": "#/definitions/GeoFilter"
           }
-        },
-        "urlSigningKeys": {
-          "description": "List of keys used to validate the signed URL hashes. TODO: Should this be at profile level",
-          "type": "array",
-          "$ref": "#/definitions/UrlSigningKey"
         },
         "webApplicationFirewallPolicy": {
           "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
@@ -3759,7 +3814,7 @@
       "x-ms-azure-resource": true
     },
     "GeoFilter": {
-      "description": "Rules defining user's geo access within a CDN endpoint.",
+      "description": "Rules defining user's geo access within a AFDX endpoint.",
       "type": "object",
       "required": [
         "relativePath",
@@ -3877,6 +3932,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "isVodManifest": {
+          "description": "True if path to the content to be loaded points to a VOD manifest file.",
+          "type": "boolean"
         }
       }
     },
@@ -3920,7 +3979,7 @@
       }
     },
     "Origin": {
-      "description": "CDN origin is the source of the content being delivered via CDN. When the edge nodes represented by an endpoint do not have the requested content cached, they attempt to fetch it from one or more of the configured origins.",
+      "description": "CDN origin is the source of the content being delivered via AFDX. When the edge nodes represented by an endpoint do not have the requested content cached, they attempt to fetch it from one or more of the configured origins.",
       "type": "object",
       "allOf": [
         {
@@ -4013,7 +4072,7 @@
           "exclusiveMinimum": false
         },
         "originHostHeader": {
-          "description": "The host header value sent to the origin with each request. If you leave this blank, the request hostname determines this value. Azure CDN origins, such as Web Apps, Blob Storage, and Cloud Services require this host header value to match the origin hostname by default. This overrides the host header defined at Endpoint",
+          "description": "The host header value sent to the origin with each request. If you leave this blank, the request hostname determines this value. Azure AFDX origins, such as Web Apps, Blob Storage, and Cloud Services require this host header value to match the origin hostname by default. This overrides the host header defined at Endpoint",
           "type": "string"
         },
         "privateLinkConfiguration": {
@@ -4048,7 +4107,7 @@
           "items": {
             "$ref": "#/definitions/Origin"
           },
-          "description": "List of CDN origins within a profile"
+          "description": "List of AFDX origins within a profile"
         },
         "nextLink": {
           "type": "string",
@@ -4057,7 +4116,7 @@
       }
     },
     "OriginGroup": {
-      "description": "Origin group comprising of origins is used for load balancing to origins when the content cannot be served from CDN.",
+      "description": "Origin group comprising of origins is used for load balancing to origins when the content cannot be served from AFDX.",
       "type": "object",
       "allOf": [
         {
@@ -4123,10 +4182,6 @@
           "type": "object",
           "$ref": "#/definitions/HealthProbeParameters"
         },
-        "sharedSecret": {
-          "description": "Provisioning status of the origin group.TODO: AI on Sohamn to define this",
-          "type": "string"
-        },
         "trafficRestorationTimeToHealedOrNewEndpointsInMinutes": {
           "description": "Time in minutes to shift the traffic to the endpoint gradually when an unhealthy endpoint comes healthy or a new endpoint is added. Default is 10 mins. This property is currently not supported.",
           "type": "integer",
@@ -4179,7 +4234,7 @@
           }
         },
         "enabled": {
-          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+          "description": "Indicates whether SSL should be enabled for this domain.",
           "type": "boolean"
         },
         "probeProtocol": {
@@ -4259,7 +4314,7 @@
           "items": {
             "$ref": "#/definitions/OriginGroup"
           },
-          "description": "List of CDN origin groups within a profile"
+          "description": "List of AFDX origin groups within a profile"
         },
         "nextLink": {
           "type": "string",
@@ -4276,7 +4331,7 @@
           "items": {
             "$ref": "#/definitions/DeliveryRule"
           },
-          "description": "List of CDN delivery rules within an endpoint"
+          "description": "List of AFDX delivery rules within an endpoint"
         },
         "nextLink": {
           "type": "string",
@@ -4419,7 +4474,7 @@
           "type": "boolean"
         },
         "ipv4Only": {
-          "description": "IPv4 only frontend. TODO",
+          "description": "IPv4 only frontend.",
           "type": "boolean"
         },
         "ownershipIdentifier": {
@@ -4433,13 +4488,9 @@
           "$ref": "#/definitions/ResourceReference"
         },
         "domainHttps": {
-          "name": "domainHttpsParameters",
-          "in": "body",
-          "description": "The configuration specifying how to enable HTTPS for the domain - using CDN managed certificate or user's own certificate. If not specified, enabling ssl uses CDN managed certificate by default.",
-          "required": false,
-          "schema": {
-            "$ref": "#/definitions/DomainHttpsParameters"
-          }
+          "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
+          "type": "object",
+          "$ref": "#/definitions/DomainHttpsParameters"
         }
       }
     },
@@ -4464,7 +4515,7 @@
           }
         },
         "cipherSuites": {
-          "description": "List of supported cipher suites. TODO: Can this be supported in v1",
+          "description": "List of supported cipher suites.",
           "type": "array",
           "items": {
             "type": "string"
@@ -4490,7 +4541,7 @@
       }
     },
     "CdnManagedHttpsParameters": {
-      "description": "Defines the certificate source parameters using CDN managed certificate for enabling SSL.",
+      "description": "Defines the certificate source parameters using AFDX managed certificate for enabling SSL.",
       "x-ms-discriminator-value": "Cdn",
       "allOf": [
         {
@@ -4502,13 +4553,13 @@
       ],
       "properties": {
         "certificateSourceParameters": {
-          "description": "Defines the certificate source parameters using CDN managed certificate for enabling SSL.",
+          "description": "Defines the certificate source parameters using AFDX managed certificate for enabling SSL.",
           "$ref": "#/definitions/CdnCertificateSourceParameters"
         }
       }
     },
     "CdnCertificateSourceParameters": {
-      "description": "Defines the parameters for using CDN managed certificate for securing domain.",
+      "description": "Defines the parameters for using AFDX managed certificate for securing domain.",
       "required": [
         "@odata.type",
         "certificateType"
@@ -4621,11 +4672,188 @@
           "items": {
             "$ref": "#/definitions/Domain"
           },
-          "description": "List of CDN domains within a profile."
+          "description": "List of AFDX domains within a profile."
         },
         "nextLink": {
           "type": "string",
           "description": "URL to get the next set of domain objects if there are any."
+        }
+      }
+    },
+    "KeyListResult": {
+      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/Key"
+          },
+          "description": "List of AFDX keys within a profile."
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of key objects if there are any."
+        }
+      }
+    },
+    "Key": {
+      "description": "Friendly key name mapping to the any key or secret related information.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/KeyProperties"
+        }
+      }
+    },
+    "KeyProperties": {
+      "description": "The JSON object that contains the properties of the key to create.",
+      "required": [
+        "type",
+        "keyName"
+      ],
+      "properties": {
+        "type": {
+          "description": "The type of the key to create.",
+          "enum": [
+            "UrlSigningKey"
+          ],
+          "type": "string"
+        },
+        "keyName": {},
+        "resourceState": {
+          "description": "Resource status of the key.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Active",
+            "Deleting"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "DomainResourceState",
+            "modelAsString": true
+          }
+        },
+        "domainProvisioningState": {
+          "description": "Provisioning status of the domain.",
+          "readOnly": true,
+          "enum": [
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Failed"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "CustomHttpsProvisioningState",
+            "modelAsString": true
+          }
+        },
+        "domainProvisioningSubstate": {
+          "description": "Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step.",
+          "readOnly": true,
+          "enum": [
+            "SubmittingDomainControlValidationRequest",
+            "PendingDomainControlValidationRequestApproval",
+            "DomainControlValidationRequestApproved",
+            "DomainControlValidationRequestRejected",
+            "DomainControlValidationRequestTimedOut"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "CustomHttpsProvisioningSubstate",
+            "modelAsString": true
+          }
+        },
+        "customHttpsProvisioningState": {
+          "description": "Provisioning status of Custom Https of the domain.",
+          "readOnly": true,
+          "enum": [
+            "Enabling",
+            "Enabled",
+            "Disabling",
+            "Disabled",
+            "Failed"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "CustomHttpsProvisioningState",
+            "modelAsString": true
+          }
+        },
+        "customHttpsProvisioningSubstate": {
+          "description": "Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step.",
+          "readOnly": true,
+          "enum": [
+            "IssuingCertificate",
+            "DeployingCertificate",
+            "CertificateDeployed",
+            "DeletingCertificate",
+            "CertificateDeleted"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "CustomHttpsProvisioningSubstate",
+            "modelAsString": true
+          }
+        },
+        "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status of the domain.",
+          "type": "string"
+        }
+      }
+    },
+    "KeyParameters": {
+      "description": "The domain JSON object required for domain creation or update.",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/DomainPropertiesParameters"
+        }
+      }
+    },
+    "KeyPropertiesParameters": {
+      "description": "The JSON object that contains the properties of the domain to create.",
+      "required": [
+        "hostName"
+      ],
+      "properties": {
+        "hostName": {
+          "description": "The host name of the domain. Must be a domain name.",
+          "type": "string"
+        },
+        "sslEnabled": {
+          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+          "type": "boolean"
+        },
+        "ipv4Only": {
+          "description": "IPv4 only frontend.",
+          "type": "boolean"
+        },
+        "ownershipIdentifier": {
+          "description": "Challenge used for DNS TXT record or file based validation",
+          "readOnly": true,
+          "type": "string"
+        },
+        "azureDnsZone": {
+          "description": "Resource reference to the Azure DNS zone",
+          "type": "object",
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "domainHttps": {
+          "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
+          "type": "object",
+          "$ref": "#/definitions/DomainHttpsParameters"
         }
       }
     },
@@ -4746,7 +4974,7 @@
       }
     },
     "ResourceType": {
-      "description": "Type of CDN resource used in CheckNameAvailability.",
+      "description": "Type of AFDX resource used in CheckNameAvailability.",
       "enum": [
         "Microsoft.Cdn/Profiles/Endpoints"
       ],
@@ -4788,7 +5016,7 @@
       }
     },
     "OperationsListResult": {
-      "description": "Result of the request to list CDN operations. It contains a list of operations and a URL link to get the next set of results.",
+      "description": "Result of the request to list AFDX operations. It contains a list of operations and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
@@ -4796,7 +5024,7 @@
           "items": {
             "$ref": "#/definitions/Operation"
           },
-          "description": "List of CDN operations supported by the CDN resource provider."
+          "description": "List of AFDX operations supported by the AFDX resource provider."
         },
         "nextLink": {
           "type": "string",
@@ -4863,7 +5091,7 @@
       ]
     },
     "QueryStringCachingBehavior": {
-      "description": "Defines how CDN caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
+      "description": "Defines how AFDX caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
       "enum": [
         "IgnoreQueryString",
         "BypassCaching",
@@ -4875,7 +5103,7 @@
         "modelAsString": true
       }
     },
-    "EndpointProtocols": {
+    "AFDCDNEndpointProtocols": {
       "description": "Supported protocols for the customer's endpoint.",
       "enum": [
         "Http",
@@ -4888,7 +5116,7 @@
       }
     },
     "Sku": {
-      "description": "The pricing tier (defines a CDN provider, feature list and rate) of the CDN profile.",
+      "description": "The pricing tier (defines a AFDX provider, feature list and rate) of the AFDX profile.",
       "properties": {
         "name": {
           "description": "Name of the pricing tier.",
@@ -4914,7 +5142,7 @@
       "type": "object"
     },
     "OptimizationType": {
-      "description": "Specifies what scenario the customer wants this CDN endpoint to optimize, e.g. Download, Media services. With this information we can apply scenario driven optimization.",
+      "description": "Specifies what scenario the customer wants this AFDX endpoint to optimize, e.g. Download, Media services. With this information we can apply scenario driven optimization.",
       "enum": [
         "GeneralWebDelivery",
         "GeneralMediaStreaming",
@@ -4929,7 +5157,7 @@
       }
     },
     "ErrorResponse": {
-      "description": "Error response indicates CDN service is not able to process the incoming request. The reason is provided in the error message.",
+      "description": "Error response indicates AFDX service is not able to process the incoming request. The reason is provided in the error message.",
       "type": "object",
       "properties": {
         "code": {
