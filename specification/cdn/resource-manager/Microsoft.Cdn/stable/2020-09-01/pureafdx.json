@@ -1,0 +1,2347 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "2020-09-01",
+      "title": "CdnManagementClient",
+      "description": "Use these APIs to manage Azure CDN resources through the Azure Resource Manager. You must make sure that requests made to these resources are secure."
+    },
+    "host": "management.azure.com",
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "security": [
+      {
+        "azure_auth": [
+          "user_impersonation"
+        ]
+      }
+    ],
+    "securityDefinitions": {
+      "azure_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+        "flow": "implicit",
+        "description": "Azure Active Directory OAuth2 Flow.",
+        "scopes": {
+          "user_impersonation": "impersonate your user account"
+        }
+      }
+    },
+    "paths": {    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/domains": {
+        "get": {
+          "tags": [
+            "Domains"
+          ],
+          "description": "Lists existing AFDX domains.",
+          "operationId": "Domains_ListByProfile",
+          "x-ms-examples": {
+            "Domains_ListByProfile": {
+              "$ref": "./examples/Domains_ListByProfile.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/DomainListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/domains/{domainName}": {
+        "get": {
+          "tags": [
+            "Domains"
+          ],
+          "description": "Gets an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
+          "operationId": "Domains_Get",
+          "x-ms-examples": {
+            "Domains_Get": {
+              "$ref": "./examples/Domains_Get.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domainName",
+              "in": "path",
+              "description": "Name of the domain under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Domains"
+          ],
+          "description": "Creates a new domain within the specified profile.",
+          "operationId": "Domains_Create",
+          "x-ms-examples": {
+            "Domains_Create": {
+              "$ref": "./examples/Domains_Create.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domainName",
+              "in": "path",
+              "description": "Name of the domain under the profile which is unique globally",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domain",
+              "in": "body",
+              "description": "Domain properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            "201": {
+              "description": "Created. The request has been fulfilled and a new domain has been created.",
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "patch": {
+          "tags": [
+            "Domains"
+          ],
+          "description": "Updates an existing domain within a profile.",
+          "operationId": "Domains_Update",
+          "x-ms-examples": {
+            "Domains_Update": {
+              "$ref": "./examples/Domains_Update.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domainName",
+              "in": "path",
+              "description": "Name of the domain under the profile which is unique globally",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domain",
+              "in": "body",
+              "description": "Domain properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/DomainUpdateParameters"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/Domain"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "delete": {
+          "tags": [
+            "Domains"
+          ],
+          "description": "Deletes an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
+          "operationId": "Domains_Delete",
+          "x-ms-examples": {
+            "Domains_Delete": {
+              "$ref": "./examples/Domains_Delete.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domainName",
+              "in": "path",
+              "description": "Name of the domain under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Accepted"
+            },
+            "204": {
+              "description": "No Content. The request has been accepted but the domain was not found."
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/domains/{domainName}/updateOwnershipIdentifier": {
+        "post": {
+          "tags": [
+            "Domains"
+          ],
+          "description": "Updates the domain ownership identifier.",
+          "operationId": "Domains_UpdateOwnershipIdentifier",
+          "x-ms-examples": {
+            "Domains_Delete": {
+              "$ref": "./examples/Domains_UpdateOwnershipIdentifier.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "domainName",
+              "in": "path",
+              "description": "Name of the domain under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "202": {
+              "description": "Accepted"
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints": {
+        "get": {
+          "tags": [
+            "AFDCDNEndpoints"
+          ],
+          "description": "Lists existing AFDX endpoints.",
+          "operationId": "AFDCDNEndpoints_ListByProfile",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_ListByProfile": {
+              "$ref": "./examples/AFDCDNEndpoints_ListByProfile.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpointListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}": {
+        "get": {
+          "tags": [
+            "AFDCDNEndpoints"
+          ],
+          "description": "Gets an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
+          "operationId": "AFDCDNEndpoints_Get",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_Get": {
+              "$ref": "./examples/AFDCDNEndpoints_Get.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "AFDCDNEndpoints"
+          ],
+          "description": "Creates a new AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
+          "operationId": "AFDCDNEndpoints_Create",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_Create": {
+              "$ref": "./examples/AFDCDNEndpoints_Create.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpoint",
+              "in": "body",
+              "description": "Endpoint properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            "201": {
+              "description": "Created. The request has been fulfilled and a new endpoint has been created.",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "patch": {
+          "tags": [
+            "AFDCDNEndpoints"
+          ],
+          "description": "Updates an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile. Only tags can be updated after creating an endpoint. To update origins, use the Update Origin operation. To update origin groups, use the Update Origin group operation. To update domains, use the Update Custom Domain operation.",
+          "operationId": "AFDCDNEndpoints_Update",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_Update": {
+              "$ref": "./examples/AFDCDNEndpoints_Update.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointUpdateProperties",
+              "in": "body",
+              "description": "Endpoint update properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpointUpdateParameters"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/AFDCDNEndpoint"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "delete": {
+          "tags": [
+            "AFDCDNEndpoints"
+          ],
+          "description": "Deletes an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
+          "operationId": "AFDCDNEndpoints_Delete",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_Delete": {
+              "$ref": "./examples/AFDCDNEndpoints_Delete.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Accepted"
+            },
+            "204": {
+              "description": "No Content"
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/purge": {
+        "post": {
+          "tags": [
+            "Endpoints"
+          ],
+          "description": "Removes a content from AFDX.",
+          "operationId": "AFDCDNEndpoints_PurgeContent",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_PurgeContent": {
+              "$ref": "./examples/AFDCDNEndpoints_PurgeContent.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contentFilePaths",
+              "in": "body",
+              "description": "The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png' which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and files in the directory.",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PurgeParameters"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "202": {
+              "description": "Accepted"
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/load": {
+        "post": {
+          "tags": [
+            "Endpoints"
+          ],
+          "description": "Pre-loads a content to AFDX.",
+          "operationId": "AFDCDNEndpoints_LoadContent",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_LoadContent": {
+              "$ref": "./examples/AFDCDNEndpoints_LoadContent.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contentFilePaths",
+              "in": "body",
+              "description": "The path to the content to be loaded. Path should be a full URL, e.g. ‘/pictures/city.png' which loads a single file ",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/LoadParameters"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "202": {
+              "description": "Accepted"
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/deliveryRules": {
+        "get": {
+          "tags": [
+            "DeliveryRules"
+          ],
+          "description": "Lists all of the existing delivery rules within an endpoint.",
+          "operationId": "DeliveryRules_ListByEndpoint",
+          "x-ms-examples": {
+            "OriginsGroups_ListByEndpoint": {
+              "$ref": "./examples/DeliveryRules_ListByEndpoint.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRuleListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/deliveryRules/{deliveryRuleName}": {
+        "get": {
+          "tags": [
+            "DeliveryRules"
+          ],
+          "description": "Gets an existing delivery rule within an endpoint.",
+          "operationId": "DeliveryRules_Get",
+          "x-ms-examples": {
+            "Rules_Get": {
+              "$ref": "./examples/DeliveryRules_Get.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "deliveryRuleName",
+              "in": "path",
+              "description": "Name of the delivery rule which is unique within the endpoint.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "DeliveryRules"
+          ],
+          "description": "Creates a new delivery rule within the specified endpoint.",
+          "operationId": "DeliveryRules_Create",
+          "x-ms-examples": {
+            "Rules_Create": {
+              "$ref": "./examples/DeliveryRules_Create.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "deliveryRuleName",
+              "in": "path",
+              "description": "Name of the delivery rule which is unique within the endpoint.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            "201": {
+              "description": "Created. The request has been fulfilled and a new delivery rule has been created.",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "patch": {
+          "tags": [
+            "DeliveryRules"
+          ],
+          "description": "Updates an existing delivery rule within an endpoint.",
+          "operationId": "DeliveryRules_Update",
+          "x-ms-examples": {
+            "Rules_Update": {
+              "$ref": "./examples/DeliveryRules_Update.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "deliveryRuleName",
+              "in": "path",
+              "description": "Name of the delivery rule which is unique within the endpoint.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "deliveryRuleProperties",
+              "in": "body",
+              "description": "Delivery rule properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/DeliveryRule"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "delete": {
+          "tags": [
+            "DeliveryRules"
+          ],
+          "description": "Deletes an existing delivery rule within an endpoint.",
+          "operationId": "DeliveryRules_Delete",
+          "x-ms-examples": {
+            "Rules_Delete": {
+              "$ref": "./examples/DeliveryRules_Delete.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "deliveryRuleName",
+              "in": "path",
+              "description": "Name of the delivery rule which is unique within the endpoint.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Accepted"
+            },
+            "204": {
+              "description": "No Content. The request has been accepted but the origin was not found."
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups": {
+        "get": {
+          "tags": [
+            "OriginGroups"
+          ],
+          "description": "Lists all of the existing origin groups within a profile.",
+          "operationId": "OriginGroups_ListByProfile",
+          "x-ms-examples": {
+            "OriginGroups_ListByProfile": {
+              "$ref": "./examples/OriginGroups_ListByProfile.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OriginGroupListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}": {
+        "get": {
+          "tags": [
+            "OriginGroups"
+          ],
+          "description": "Gets an existing origin group within a profile.",
+          "operationId": "AFDCDNOriginGroups_Get",
+          "x-ms-examples": {
+            "AFDCDNOriginGroups_Get": {
+              "$ref": "./examples/AFDCDNOriginGroups_Get.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the endpoint.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "OriginGroups"
+          ],
+          "description": "Creates a new origin group within the specified profile.",
+          "operationId": "AFDCDNOriginGroups_Create",
+          "x-ms-examples": {
+            "AFDCDNOriginGroups_Create": {
+              "$ref": "./examples/AFDCDNOriginGroups_Create.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the endpoint.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroup",
+              "in": "body",
+              "description": "Origin group properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            "201": {
+              "description": "Created. The request has been fulfilled and a new origin group has been created.",
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "patch": {
+          "tags": [
+            "OriginGroups"
+          ],
+          "description": "Updates an existing origin group within a profile.",
+          "operationId": "AFDCDNOriginGroups_Update",
+          "x-ms-examples": {
+            "AFDCDNOriginGroups_Update": {
+              "$ref": "./examples/AFDCDNOriginGroups_Update.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupUpdateProperties",
+              "in": "body",
+              "description": "Origin group properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/OriginGroupUpdateParameters"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/OriginGroup"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "delete": {
+          "tags": [
+            "OriginGroups"
+          ],
+          "description": "Deletes an existing origin group within a profile.",
+          "operationId": "AFDCDNOriginGroups_Delete",
+          "x-ms-examples": {
+            "AFDCDNOriginGroups_Delete": {
+              "$ref": "./examples/AFDCDNOriginGroups_Delete.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Accepted"
+            },
+            "204": {
+              "description": "No Content. The request has been accepted but the origin group was not found."
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins": {
+        "get": {
+          "tags": [
+            "Origins"
+          ],
+          "description": "Lists all of the existing origins within a origin group.",
+          "operationId": "Origins_ListByOriginGroup",
+          "x-ms-examples": {
+            "Origins_ListByOriginGroup": {
+              "$ref": "./examples/Origins_ListByOriginGroup.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OriginListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins/{originName}": {
+        "get": {
+          "tags": [
+            "Origins"
+          ],
+          "description": "Gets an existing origin within an origin group.",
+          "operationId": "AFDCDNOrigins_Get",
+          "x-ms-examples": {
+            "AFDCDNOrigins_Get": {
+              "$ref": "./examples/AFDCDNOrigins_Get.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originName",
+              "in": "path",
+              "description": "Name of the origin which is unique within the  origin group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Origins"
+          ],
+          "description": "Creates a new origin within the specified origin group.",
+          "operationId": "AFDCDNOrigins_Create",
+          "x-ms-examples": {
+            "AFDCDNOrigins_Create": {
+              "$ref": "./examples/AFDCDNOrigins_Create.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originName",
+              "in": "path",
+              "description": "Name of the origin that is unique within the  origin group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "origin",
+              "in": "body",
+              "description": "Origin properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            "201": {
+              "description": "Created. The request has been fulfilled and a new origin has been created.",
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "patch": {
+          "tags": [
+            "Origins"
+          ],
+          "description": "Updates an existing origin within a origin group.",
+          "operationId": "AFDCDNOrigins_Update",
+          "x-ms-examples": {
+            "AFDCDNOrigins_Update": {
+              "$ref": "./examples/AFDCDNOrigins_Update.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originName",
+              "in": "path",
+              "description": "Name of the origin which is unique within the origin group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originUpdateProperties",
+              "in": "body",
+              "description": "Origin properties",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/OriginUpdateParameters"
+              }
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            "202": {
+              "description": "Accepted",
+              "schema": {
+                "$ref": "#/definitions/Origin"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        },
+        "delete": {
+          "tags": [
+            "Origins"
+          ],
+          "description": "Deletes an existing origin within a origin group.",
+          "operationId": "AFDCDNOrigins_Delete",
+          "x-ms-examples": {
+            "AFDCDNOrigins_Delete": {
+              "$ref": "./examples/AFDCDNOrigins_Delete.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originName",
+              "in": "path",
+              "description": "Name of the origin which is unique within the  origin group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Accepted"
+            },
+            "204": {
+              "description": "No Content. The request has been accepted but the origin was not found."
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
+        "get": {
+          "tags": [
+            "Keys"
+          ],
+          "description": "Lists existing AFDX keys.",
+          "operationId": "Keys_ListByProfile",
+          "x-ms-examples": {
+            "Keys_ListByProfile": {
+              "$ref": "./examples/Keys_ListByProfile.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/KeyListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      }
+    },
+    "definitions": {
+        "DomainListResult": {
+            "description": "Result of the request to list domains. It contains a list of domain objects and a URL link to get the next set of results.",
+            "properties": {
+              "value": {
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "#/definitions/Domain"
+                },
+                "description": "List of AFDX domains within a profile."
+              },
+              "nextLink": {
+                "type": "string",
+                "description": "URL to get the next set of domain objects if there are any."
+              }
+            }
+          },
+          "Domain": {
+            "description": "Friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes, e.g. www.contoso.com.",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/definitions/ProxyResource"
+              }
+            ],
+            "properties": {
+              "properties": {
+                "x-ms-client-flatten": true,
+                "$ref": "#/definitions/DomainProperties"
+              }
+            }
+          },
+          "DomainProperties": {
+            "description": "The JSON object that contains the properties of the domain to create.",
+            "required": [
+              "hostName"
+            ],
+            "properties": {
+              "hostName": {
+                "description": "The host name of the domain. Must be a domain name.",
+                "type": "string"
+              },
+              "resourceState": {
+                "description": "Resource status of the domain.",
+                "readOnly": true,
+                "enum": [
+                  "Creating",
+                  "Active",
+                  "Deleting"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "DomainResourceState",
+                  "modelAsString": true
+                }
+              },
+              "domainProvisioningState": {
+                "description": "Provisioning status of the domain.",
+                "readOnly": true,
+                "enum": [
+                  "Enabling",
+                  "Enabled",
+                  "Disabling",
+                  "Disabled",
+                  "Failed"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "CustomHttpsProvisioningState",
+                  "modelAsString": true
+                }
+              },
+              "domainProvisioningSubstate": {
+                "description": "Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step.",
+                "readOnly": true,
+                "enum": [
+                  "SubmittingDomainControlValidationRequest",
+                  "PendingDomainControlValidationRequestApproval",
+                  "DomainControlValidationRequestApproved",
+                  "DomainControlValidationRequestRejected",
+                  "DomainControlValidationRequestTimedOut"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "CustomHttpsProvisioningSubstate",
+                  "modelAsString": true
+                }
+              },
+              "customHttpsProvisioningState": {
+                "description": "Provisioning status of Custom Https of the domain.",
+                "readOnly": true,
+                "enum": [
+                  "Enabling",
+                  "Enabled",
+                  "Disabling",
+                  "Disabled",
+                  "Failed"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "CustomHttpsProvisioningState",
+                  "modelAsString": true
+                }
+              },
+              "customHttpsProvisioningSubstate": {
+                "description": "Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step.",
+                "readOnly": true,
+                "enum": [
+                  "IssuingCertificate",
+                  "DeployingCertificate",
+                  "CertificateDeployed",
+                  "DeletingCertificate",
+                  "CertificateDeleted"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "CustomHttpsProvisioningSubstate",
+                  "modelAsString": true
+                }
+              },
+              "sslEnabled": {
+                "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+                "type": "boolean"
+              },
+              "ipv4Only": {
+                "description": "IPv4 only frontend.",
+                "type": "boolean"
+              },
+              "ownershipIdentifier": {
+                "description": "Challenge used for DNS TXT record or file based validation",
+                "readOnly": true,
+                "type": "string"
+              },
+              "azureDnsZone": {
+                "description": "Resource reference to the Azure DNS zone",
+                "type": "object",
+                "$ref": "#/definitions/ResourceReference"
+              },
+              "domainHttps": {
+                "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
+                "type": "object",
+                "$ref": "#/definitions/DomainHttpsParameters"
+              }
+            }
+          },
+          "DomainUpdateParameters": {
+            "description": "The domain JSON object required for domain creation or update.",
+            "type": "object",
+            "properties": {
+              "properties": {
+                "x-ms-client-flatten": true,
+                "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+              }
+            }
+          },
+          "DomainUpdatePropertiesParameters": {
+            "description": "The JSON object that contains the properties of the domain to create.",
+            "required": [
+              "hostName"
+            ],
+            "properties": {
+              "hostName": {
+                "description": "The host name of the domain. Must be a domain name.",
+                "type": "string"
+              },
+              "sslEnabled": {
+                "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+                "type": "boolean"
+              },
+              "ipv4Only": {
+                "description": "IPv4 only frontend.",
+                "type": "boolean"
+              },
+              "ownershipIdentifier": {
+                "description": "Challenge used for DNS TXT record or file based validation",
+                "readOnly": true,
+                "type": "string"
+              },
+              "azureDnsZone": {
+                "description": "Resource reference to the Azure DNS zone",
+                "type": "object",
+                "$ref": "#/definitions/ResourceReference"
+              },
+              "domainHttps": {
+                "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
+                "type": "object",
+                "$ref": "#/definitions/DomainHttpsParameters"
+              }
+            }
+          },
+          "DomainHttpsParameters": {
+            "description": "The JSON object that contains the properties to secure a domain.",
+            "discriminator": "certificateSource",
+            "required": [
+              "certificateSource",
+              "protocolType"
+            ],
+            "properties": {
+              "certificateSource": {
+                "description": "Defines the source of the SSL certificate.",
+                "enum": [
+                  "AzureKeyVault",
+                  "Cdn"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "CertificateSource",
+                  "modelAsString": true
+                }
+              },
+              "protocolType": {
+                "description": "Defines the TLS extension protocol that is used for secure delivery.",
+                "enum": [
+                  "ServerNameIndication",
+                  "IPBased"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "ProtocolType",
+                  "modelAsString": true
+                }
+              },
+              "cipherSuites": {
+                "description": "List of supported cipher suites.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "minimumTlsVersion": {
+                "description": "TLS protocol version that will be used for Https",
+                "enum": [
+                  "None",
+                  "TLS10",
+                  "TLS12"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "MinimumTlsVersion",
+                  "modelAsString": false
+                }
+              },
+              "AutoRedirectToHttps": {
+                "description": "Redirect to https",
+                "type": "boolean"
+              }
+            }
+          },
+          "KeyListResult": {
+            "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+            "properties": {
+              "value": {
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "#/definitions/Key"
+                },
+                "description": "List of AFDX keys within a profile."
+              },
+              "nextLink": {
+                "type": "string",
+                "description": "URL to get the next set of key objects if there are any."
+              }
+            }
+          },
+          "Key": {
+            "description": "Friendly key name mapping to the any key or secret related information.",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/definitions/ProxyResource"
+              }
+            ],
+            "properties": {
+              "properties": {
+                "x-ms-client-flatten": true,
+                "$ref": "#/definitions/KeyProperties"
+              }
+            }
+          },
+          "KeyProperties": {
+            "description": "The JSON object that contains the properties of the key to create.",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "description": "The type of the key to create.",
+                "enum": [
+                  "UrlSigningKey"
+                ],
+                "type": "string"
+              },
+              "resourceState": {
+                "description": "Resource status of the key.",
+                "readOnly": true,
+                "enum": [
+                  "Creating",
+                  "Active",
+                  "Deleting"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "DomainResourceState",
+                  "modelAsString": true
+                }
+              }
+            }
+          },
+          "KeyParameters": {
+            "description": "The domain JSON object required for domain creation or update.",
+            "type": "object",
+            "properties": {
+              "properties": {
+                "x-ms-client-flatten": true,
+                "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+              }
+            }
+          },
+          "KeyPropertiesParameters": {
+            "description": "The JSON object that contains the properties of the domain to create.",
+            "required": [
+              "hostName"
+            ],
+            "properties": {
+              "hostName": {
+                "description": "The host name of the domain. Must be a domain name.",
+                "type": "string"
+              },
+              "sslEnabled": {
+                "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+                "type": "boolean"
+              }
+            }
+          },
+          "AFDCDNEndpoint": {
+            "description": "CDN endpoint is the entity within a CDN profile containing configuration information such as origin, protocol, content caching and delivery behavior. The AFDX endpoint uses the URL format <endpointname>.azureedge.net.",
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/definitions/TrackedResource"
+              }
+            ],
+            "properties": {
+              "properties": {
+                "x-ms-client-flatten": true,
+                "$ref": "#/definitions/AFDCDNEndpointProperties"
+              }
+            }
+          },
+          "AFDCDNEndpointProperties": {
+            "description": "The JSON object that contains the properties required to create an endpoint.",
+            "required": [
+              "origins"
+            ],
+            "allOf": [
+              {
+                "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
+              }
+            ],
+            "properties": {
+              "hostName": {
+                "description": "The host name of the endpoint structured as {endpointName}.{DNSZone}, e.g. contoso.azureedge.net",
+                "type": "string",
+                "readOnly": true
+              },
+              "resourceState": {
+                "description": "Resource status of the endpoint.",
+                "readOnly": true,
+                "enum": [
+                  "Creating",
+                  "Deleting",
+                  "Running",
+                  "Starting",
+                  "Stopped",
+                  "Stopping"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                  "name": "EndpointResourceState",
+                  "modelAsString": true
+                }
+              },
+              "provisioningState": {
+                "readOnly": true,
+                "description": "Provisioning status of the endpoint.",
+                "type": "string"
+              }
+            }
+          },
+          "AFDCDNEndpointListResult": {
+            "description": "Result of the request to list endpoints. It contains a list of endpoint objects and a URL link to get the next set of results.",
+            "properties": {
+              "value": {
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "#/definitions/AFDCDNEndpoint"
+                },
+                "description": "List of AFDX endpoints within a profile"
+              },
+              "nextLink": {
+                "type": "string",
+                "description": "URL to get the next set of endpoint objects if there is any."
+              }
+            }
+          },
+          "AFDCDNEndpointUpdateParameters": {
+            "type": "object",
+            "description": "Properties required to create or update an endpoint.",
+            "properties": {
+              "tags": {
+                "description": "Endpoint tags.",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "properties": {
+                "x-ms-client-flatten": true,
+                "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
+              }
+            },
+            "x-ms-azure-resource": true
+          },
+          "AFDCDNEndpointPropertiesUpdateParameters": {
+            "description": "The JSON object containing endpoint update parameters.",
+            "properties": {
+              "domains": {
+                "description": "Domains referenced by this endpoint.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ResourceReference"
+                }
+              },
+              "originGroup": {
+                "description": "A reference to the origin group.",
+                "type": "object",
+                "$ref": "#/definitions/ResourceReference"
+              },
+              "originPath": {
+                "description": "A directory path on the origin that AFDX can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
+                "type": "string"
+              },
+              "contentTypesToCompress": {
+                "description": "List of content types on which compression applies. The value should be a valid MIME type.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "isCompressionEnabled": {
+                "description": "Indicates whether content compression is enabled on AFDX. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AFDX when requested content is smaller than 1 byte or larger than 1 MB.",
+                "type": "boolean"
+              },
+              "supportedProtocols": {
+                "description": "List of supported protocols for the customer's endpoint.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/AFDCDNEndpointProtocols"
+                }
+              },
+              "queryStringCachingBehavior": {
+                "description": "Defines how AFDX caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
+                "$ref": "#/definitions/QueryStringCachingBehavior"
+              },
+              "optimizationType": {
+                "description": "Specifies what scenario the customer wants this AFDX endpoint to optimize for, e.g. Download, Media services. With this information, AFDX can apply scenario driven optimization.",
+                "$ref": "#/definitions/OptimizationType"
+              },
+              "probePath": {
+                "description": "Path to a file hosted on the origin which helps accelerate delivery of the dynamic content and calculate the most optimal routes for the AFDX. This is relative to the origin path. This property is only relevant when using a single origin.",
+                "type": "string"
+              },
+              "geoFilters": {
+                "description": "List of rules defining the user's geo access within a AFDX endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/",
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/GeoFilter"
+                }
+              },
+              "webApplicationFirewallPolicy": {
+                "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Resource ID."
+                  }
+                }
+              }
+            }
+          },
+          "AFDCDNEndpointProtocols": {
+            "description": "Supported protocols for the customer's endpoint.",
+            "enum": [
+              "Http",
+              "Https"
+            ],
+            "type": "string",
+            "x-ms-enum": {
+              "name": "EndpointProtocols",
+              "modelAsString": true
+            }
+          },
+          "DeliveryRuleListResult": {
+            "description": "Result of the request to list delivery rules. It contains a list of delivery rule objects and a URL link to get the next set of results.",
+            "properties": {
+              "value": {
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "#/definitions/DeliveryRule"
+                },
+                "description": "List of AFDX delivery rules within an endpoint"
+              },
+              "nextLink": {
+                "type": "string",
+                "description": "URL to get the next set of delivery rule objects if there are any."
+              }
+            }
+          }
+    },
+    "parameters": {
+      "subscriptionIdParameter": {
+        "name": "subscriptionId",
+        "in": "path",
+        "description": "Azure Subscription ID.",
+        "required": true,
+        "type": "string"
+      },
+      "apiVersionParameter": {
+        "name": "api-version",
+        "in": "query",
+        "required": true,
+        "type": "string",
+        "description": "Version of the API to be used with the client request. Current version is 2017-04-02."
+      },
+      "resourceGroupNameParameter": {
+        "name": "resourceGroupName",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "pattern": "^[-\\w\\._\\(\\)]+$",
+        "minLength": 1,
+        "maxLength": 90,
+        "x-ms-parameter-location": "method",
+        "description": "Name of the Resource group within the Azure subscription."
+      }
+    }}
