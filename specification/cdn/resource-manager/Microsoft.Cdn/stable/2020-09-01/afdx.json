@@ -3829,7 +3829,7 @@
           "description": "Lists existing AFDX routes.",
           "operationId": "Routes_ListByEndpoint",
           "x-ms-examples": {
-            "AFDCDNEndpoints_ListByProfile": {
+            "Routes_ListByEndpoint": {
               "$ref": "./examples/Routes_ListByEndpoint.json"
             }
           },
