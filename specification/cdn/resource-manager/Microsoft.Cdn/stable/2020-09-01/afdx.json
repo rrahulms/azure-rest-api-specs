@@ -3496,13 +3496,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins": {
       "get": {
         "tags": [
-          "Origins"
+          "AFDCDNOrigins"
         ],
-        "description": "Lists all of the existing origins within a origin group.",
-        "operationId": "Origins_ListByOriginGroup",
+        "description": "Lists all of the existing origins within a profile.",
+        "operationId": "AFDCDNOrigins_ListByProfile",
         "x-ms-examples": {
-          "Origins_ListByOriginGroup": {
-            "$ref": "./examples/Origins_ListByOriginGroup.json"
+          "AFDCDNOrigins_ListByProfile": {
+            "$ref": "./examples/AFDCDNOrigins_ListByProfile.json"
           }
         },
         "parameters": [
@@ -3552,9 +3552,9 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins/{originName}": {
       "get": {
         "tags": [
-          "Origins"
+          "AFDCDNOrigins"
         ],
-        "description": "Gets an existing origin within an origin group.",
+        "description": "Gets an existing origin within a profile.",
         "operationId": "AFDCDNOrigins_Get",
         "x-ms-examples": {
           "AFDCDNOrigins_Get": {
@@ -3582,7 +3582,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin which is unique within the  origin group.",
+            "description": "Name of the origin which is unique within the profile.",
             "required": true,
             "type": "string"
           },
@@ -3610,9 +3610,9 @@
       },
       "put": {
         "tags": [
-          "Origins"
+          "AFDCDNOrigins"
         ],
-        "description": "Creates a new origin within the specified origin group.",
+        "description": "Creates a new origin within the specified profile.",
         "operationId": "AFDCDNOrigins_Create",
         "x-ms-examples": {
           "AFDCDNOrigins_Create": {
@@ -3640,7 +3640,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin that is unique within the  origin group.",
+            "description": "Name of the origin that is unique within the profile.",
             "required": true,
             "type": "string"
           },
@@ -3690,9 +3690,9 @@
       },
       "patch": {
         "tags": [
-          "Origins"
+          "AFDCDNOrigins"
         ],
-        "description": "Updates an existing origin within a origin group.",
+        "description": "Updates an existing origin within a profile.",
         "operationId": "AFDCDNOrigins_Update",
         "x-ms-examples": {
           "AFDCDNOrigins_Update": {
@@ -3720,7 +3720,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin which is unique within the origin group.",
+            "description": "Name of the origin which is unique within the profile.",
             "required": true,
             "type": "string"
           },
@@ -3764,9 +3764,9 @@
       },
       "delete": {
         "tags": [
-          "Origins"
+          "AFDCDNOrigins"
         ],
-        "description": "Deletes an existing origin within a origin group.",
+        "description": "Deletes an existing origin within a profile.",
         "operationId": "AFDCDNOrigins_Delete",
         "x-ms-examples": {
           "AFDCDNOrigins_Delete": {
@@ -3794,7 +3794,7 @@
           {
             "name": "originName",
             "in": "path",
-            "description": "Name of the origin which is unique within the  origin group.",
+            "description": "Name of the origin which is unique within the profile.",
             "required": true,
             "type": "string"
           },
@@ -3820,6 +3820,949 @@
           }
         },
         "x-ms-long-running-operation": true
+      },
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes": {
+        "get": {
+          "tags": [
+            "Routes"
+          ],
+          "description": "Lists existing AFDX routes.",
+          "operationId": "Routes_ListByEndpoint",
+          "x-ms-examples": {
+            "AFDCDNEndpoints_ListByProfile": {
+              "$ref": "./examples/Routes_ListByEndpoint.json"
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/parameters/resourceGroupNameParameter"
+            },
+            {
+              "name": "profileName",
+              "in": "path",
+              "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "endpointName",
+              "in": "path",
+              "description": "Name of the endpoint under the profile which is unique globally.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/subscriptionIdParameter"
+            },
+            {
+              "$ref": "#/parameters/apiVersionParameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/RouteListResult"
+              }
+            },
+            "default": {
+              "description": "CDN error response describing why the operation failed.",
+              "schema": {
+                "$ref": "#/definitions/ErrorResponse"
+              }
+            }
+          },
+          "x-ms-pageable": {
+            "nextLinkName": "nextLink"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes/{routeName}": {
+      "get": {
+        "tags": [
+          "Routes"
+        ],
+        "description": "Gets an existing route with the specified route name under the specified subscription, resource group, profile, and AFDX endpoint.",
+        "operationId": "Routes_Get",
+        "x-ms-examples": {
+          "Routes_Get": {
+            "$ref": "./examples/Routes_Get.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endpointName",
+            "in": "path",
+            "description": "Name of the endpoint under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeName",
+            "in": "path",
+            "description": "Name of the routing rule.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Routes"
+        ],
+        "description": "Creates a new route with the specified route name under the specified subscription, resource group, profile, and AFDX endpoint.",
+        "operationId": "Routes_Create",
+        "x-ms-examples": {
+          "Routes_Create": {
+            "$ref": "./examples/Routes_Create.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endpointName",
+            "in": "path",
+            "description": "Name of the endpoint under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeName",
+            "in": "path",
+            "description": "Name of the routing rule.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "route",
+            "in": "body",
+            "description": "Route properties",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          "201": {
+            "description": "Created. The request has been fulfilled and a new endpoint has been created.",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      },
+      "patch": {
+        "tags": [
+          "Routes"
+        ],
+        "description": "Updates an existing route with the specified route name under the specified subscription, resource group, profile, and AFDX endpoint.",
+        "operationId": "Routes_Update",
+        "x-ms-examples": {
+          "Routes_Update": {
+            "$ref": "./examples/Routes_Update.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endpointName",
+            "in": "path",
+            "description": "Name of the endpoint under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeName",
+            "in": "path",
+            "description": "Name of the routing rule.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeUpdateProperties",
+            "in": "body",
+            "description": "Route update properties",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RouteUpdateParameters"
+            }
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/Route"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      },
+      "delete": {
+        "tags": [
+          "Routes"
+        ],
+        "description": "Deletes an existing route with the specified route name under the specified subscription, resource group, profile, and AFDX endpoint.",
+        "operationId": "Routes_Delete",
+        "x-ms-examples": {
+          "Routes_Delete": {
+            "$ref": "./examples/Routes_Delete.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endpointName",
+            "in": "path",
+            "description": "Name of the endpoint under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeName",
+            "in": "path",
+            "description": "Name of the routing rule.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets": {
+      "get": {
+        "tags": [
+          "RuleSet"
+        ],
+        "description": "Lists existing AFDX rule sets.",
+        "operationId": "RuleSet_ListByProfile",
+        "x-ms-examples": {
+          "RuleSet_ListByProfile": {
+            "$ref": "./examples/RuleSet_ListByProfile.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RuleSetListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}": {
+      "get": {
+        "tags": [
+          "RuleSet"
+        ],
+        "description": "Gets an existing AFDX rule set with the specified rule set name under the specified subscription, resource group and profile.",
+        "operationId": "RuleSet_Get",
+        "x-ms-examples": {
+          "RuleSet_Get": {
+            "$ref": "./examples/RuleSet_Get.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RuleSet"
+        ],
+        "description": "Creates a new rule set within the specified profile.",
+        "operationId": "RuleSet_Create",
+        "x-ms-examples": {
+          "RuleSet_Create": {
+            "$ref": "./examples/RuleSet_Create.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile which is unique globally",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rule set",
+            "in": "body",
+            "description": "RuleSet properties",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          "201": {
+            "description": "Created. The request has been fulfilled and a new rule set has been created.",
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      },
+      "patch": {
+        "tags": [
+          "RuleSet"
+        ],
+        "description": "Updates an existing rule set within a profile.",
+        "operationId": "RuleSet_Update",
+        "x-ms-examples": {
+          "RuleSet_Update": {
+            "$ref": "./examples/RuleSet_Update.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile which is unique globally",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "rule set",
+            "in": "body",
+            "description": "RuleSet properties",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RuleSetUpdateParameters"
+            }
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/RuleSet"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      },
+      "delete": {
+        "tags": [
+          "RuleSet"
+        ],
+        "description": "Deletes an existing AFDX rule set with the specified rule set name under the specified subscription, resource group and profile.",
+        "operationId": "RuleSet_Delete",
+        "x-ms-examples": {
+          "RuleSet_Delete": {
+            "$ref": "./examples/RuleSet_Delete.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "204": {
+            "description": "No Content. The request has been accepted but the rule set was not found."
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}/rules": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "description": "Lists all of the existing delivery rules within a rule set.",
+        "operationId": "Rules_ListByRuleSet",
+        "x-ms-examples": {
+          "Rules_ListByRuleSet": {
+            "$ref": "./examples/Rules_ListByRuleSet.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRuleListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}/rules/{ruleName}": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "description": "Gets an existing delivery rule within a rule set.",
+        "operationId": "Rules_Get",
+        "x-ms-examples": {
+          "Rules_Get": {
+            "$ref": "./examples/Rules_Get.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "path",
+            "description": "Name of the delivery rule which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Rules"
+        ],
+        "description": "Creates a new delivery rule within the specified rule set.",
+        "operationId": "Rules_Create",
+        "x-ms-examples": {
+          "Rules_Create": {
+            "$ref": "./examples/Rules_Create.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "path",
+            "description": "Name of the delivery rule which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          "201": {
+            "description": "Created. The request has been fulfilled and a new delivery rule has been created.",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      },
+      "patch": {
+        "tags": [
+          "Rules"
+        ],
+        "description": "Updates an existing delivery rule within a rule set.",
+        "operationId": "Rules_Update",
+        "x-ms-examples": {
+          "Rules_Update": {
+            "$ref": "./examples/Rules_Update.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "path",
+            "description": "Name of the delivery rule which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "deliveryRuleProperties",
+            "in": "body",
+            "description": "Delivery rule properties",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/DeliveryRule"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true
+      },
+      "delete": {
+        "tags": [
+          "Rules"
+        ],
+        "description": "Deletes an existing delivery rule within a rule set.",
+        "operationId": "Rules_Delete",
+        "x-ms-examples": {
+          "Rules_Delete": {
+            "$ref": "./examples/Rules_Delete.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "path",
+            "description": "Name of the delivery rule which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "204": {
+            "description": "No Content. The request has been accepted but the origin was not found."
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "x-ms-long-running-operation": true
+        }
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
@@ -3977,7 +4920,6 @@
       }
     },
     "Endpoint": {
-      "description": "CDN endpoint is the entity within a CDN profile containing configuration information such as origin, protocol, content caching and delivery behavior. The CDN endpoint uses the URL format <endpointname>.azureedge.net.",
       "type": "object",
       "allOf": [
         {
@@ -7236,7 +8178,7 @@
         }
       }
     },
-    "KeyParameters": {
+    "KeyUpdateParameters": {
       "description": "The domain JSON object required for domain creation or update.",
       "type": "object",
       "properties": {
@@ -7246,7 +8188,268 @@
         }
       }
     },
-    "KeyPropertiesParameters": {
+    "KeyUpdatePropertiesParameters": {
+      "description": "The JSON object that contains the properties of the domain to create.",
+      "required": [
+        "hostName"
+      ],
+      "properties": {
+        "hostName": {
+          "description": "The host name of the domain. Must be a domain name.",
+          "type": "string"
+        },
+        "sslEnabled": {
+          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+          "type": "boolean"
+        }
+      }
+    },
+    "RuleSetListResult": {
+      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/RuleSet"
+          },
+          "description": "List of AFDX keys within a profile."
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of key objects if there are any."
+        }
+      }
+    },
+    "RuleSet": {
+      "description": "Friendly RuleSet name mapping to the any RuleSet or secret related information.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/RuleSetProperties"
+        }
+      }
+    },
+    "RuleSetProperties": {
+      "description": "The JSON object that contains the properties of the RuleSet to create.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "description": "The type of the RuleSet to create.",
+          "enum": [
+            "UrlSigningRuleSet"
+          ],
+          "type": "string"
+        },
+        "resourceState": {
+          "description": "Resource status of the RuleSet.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Active",
+            "Deleting"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "DomainResourceState",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "RuleSetUpdateParameters": {
+      "description": "The domain JSON object required for domain creation or update.",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+        }
+      }
+    },
+    "RuleSetUpdatePropertiesParameters": {
+      "description": "The JSON object that contains the properties of the domain to create.",
+      "required": [
+        "hostName"
+      ],
+      "properties": {
+        "hostName": {
+          "description": "The host name of the domain. Must be a domain name.",
+          "type": "string"
+        },
+        "sslEnabled": {
+          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+          "type": "boolean"
+        }
+      }
+    },
+    "RouteListResult": {
+      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/Route"
+          },
+          "description": "List of AFDX keys within a profile."
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of key objects if there are any."
+        }
+      }
+    },
+    "Route": {
+      "description": "Friendly Routes name mapping to the any Routes or secret related information.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/RouteProperties"
+        }
+      }
+    },
+    "RouteProperties": {
+      "description": "The JSON object that contains the properties of the Routes to create.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "description": "The type of the Routes to create.",
+          "enum": [
+            "UrlSigningRoutes"
+          ],
+          "type": "string"
+        },
+        "resourceState": {
+          "description": "Resource status of the Routes.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Active",
+            "Deleting"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "DomainResourceState",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "RouteUpdateParameters": {
+      "description": "The domain JSON object required for domain creation or update.",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/RouteUpdatePropertiesParameters"
+        }
+      }
+    },
+    "RouteUpdatePropertiesParameters": {
+      "description": "The JSON object that contains the properties of the domain to create.",
+      "required": [
+        "hostName"
+      ],
+      "properties": {
+        "hostName": {
+          "description": "The host name of the domain. Must be a domain name.",
+          "type": "string"
+        },
+        "sslEnabled": {
+          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+          "type": "boolean"
+        }
+      }
+    },
+    "RuleListResult": {
+      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/Rule"
+          },
+          "description": "List of AFDX keys within a profile."
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of key objects if there are any."
+        }
+      }
+    },
+    "Rule": {
+      "description": "Friendly Rules name mapping to the any Rules or secret related information.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/RuleProperties"
+        }
+      }
+    },
+    "RuleProperties": {
+      "description": "The JSON object that contains the properties of the Rules to create.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "description": "The type of the Rules to create.",
+          "enum": [
+            "UrlSigningRules"
+          ],
+          "type": "string"
+        },
+        "resourceState": {
+          "description": "Resource status of the Rules.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Active",
+            "Deleting"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "DomainResourceState",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "RuleUpdateParameters": {
+      "description": "The domain JSON object required for domain creation or update.",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/RuleUpdatePropertiesParameters"
+        }
+      }
+    },
+    "RuleUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the domain to create.",
       "required": [
         "hostName"
