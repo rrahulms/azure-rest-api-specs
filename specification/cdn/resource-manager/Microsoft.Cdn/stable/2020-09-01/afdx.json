@@ -8117,6 +8117,176 @@
         }
       }
     },
+    "AFDCDNEndpoint": {
+      "description": "CDN endpoint is the entity within a CDN profile containing configuration information such as origin, protocol, content caching and delivery behavior. The AFDX endpoint uses the URL format <endpointname>.azureedge.net.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/TrackedResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/AFDCDNEndpointProperties"
+        }
+      }
+    },
+    "AFDCDNEndpointProperties": {
+      "description": "The JSON object that contains the properties required to create an endpoint.",
+      "required": [
+        "origins"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
+        }
+      ],
+      "properties": {
+        "hostName": {
+          "description": "The host name of the endpoint structured as {endpointName}.{DNSZone}, e.g. contoso.azureedge.net",
+          "type": "string",
+          "readOnly": true
+        },
+        "resourceState": {
+          "description": "Resource status of the endpoint.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Deleting",
+            "Running",
+            "Starting",
+            "Stopped",
+            "Stopping"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "EndpointResourceState",
+            "modelAsString": true
+          }
+        },
+        "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status of the endpoint.",
+          "type": "string"
+        }
+      }
+    },
+    "AFDCDNEndpointListResult": {
+      "description": "Result of the request to list endpoints. It contains a list of endpoint objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/AFDCDNEndpoint"
+          },
+          "description": "List of AFDX endpoints within a profile"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of endpoint objects if there is any."
+        }
+      }
+    },
+    "AFDCDNEndpointUpdateParameters": {
+      "type": "object",
+      "description": "Properties required to create or update an endpoint.",
+      "properties": {
+        "tags": {
+          "description": "Endpoint tags.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
+        }
+      },
+      "x-ms-azure-resource": true
+    },
+    "AFDCDNEndpointPropertiesUpdateParameters": {
+      "description": "The JSON object containing endpoint update parameters.",
+      "properties": {
+        "domains": {
+          "description": "Domains referenced by this endpoint.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "originGroup": {
+          "description": "A reference to the origin group.",
+          "type": "object",
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "originPath": {
+          "description": "A directory path on the origin that AFDX can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
+          "type": "string"
+        },
+        "contentTypesToCompress": {
+          "description": "List of content types on which compression applies. The value should be a valid MIME type.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isCompressionEnabled": {
+          "description": "Indicates whether content compression is enabled on AFDX. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AFDX when requested content is smaller than 1 byte or larger than 1 MB.",
+          "type": "boolean"
+        },
+        "supportedProtocols": {
+          "description": "List of supported protocols for the customer's endpoint.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AFDCDNEndpointProtocols"
+          }
+        },
+        "queryStringCachingBehavior": {
+          "description": "Defines how AFDX caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
+          "$ref": "#/definitions/QueryStringCachingBehavior"
+        },
+        "optimizationType": {
+          "description": "Specifies what scenario the customer wants this AFDX endpoint to optimize for, e.g. Download, Media services. With this information, AFDX can apply scenario driven optimization.",
+          "$ref": "#/definitions/OptimizationType"
+        },
+        "probePath": {
+          "description": "Path to a file hosted on the origin which helps accelerate delivery of the dynamic content and calculate the most optimal routes for the AFDX. This is relative to the origin path. This property is only relevant when using a single origin.",
+          "type": "string"
+        },
+        "geoFilters": {
+          "description": "List of rules defining the user's geo access within a AFDX endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GeoFilter"
+          }
+        },
+        "webApplicationFirewallPolicy": {
+          "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Resource ID."
+            }
+          }
+        }
+      }
+    },
+    "AFDCDNEndpointProtocols": {
+      "description": "Supported protocols for the customer's endpoint.",
+      "enum": [
+        "Http",
+        "Https"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "name": "EndpointProtocols",
+        "modelAsString": true
+      }
+    },
     "KeyListResult": {
       "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
       "properties": {
@@ -8412,29 +8582,32 @@
     },
     "RuleProperties": {
       "description": "The JSON object that contains the properties of the Rules to create.",
+       "type": "object",
       "required": [
-        "type"
+        "order",
+        "actions"
       ],
       "properties": {
-        "type": {
-          "description": "The type of the Rules to create.",
-          "enum": [
-            "UrlSigningRules"
-          ],
+        "name": {
+          "description": "Name of the rule",
           "type": "string"
         },
-        "resourceState": {
-          "description": "Resource status of the Rules.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "DomainResourceState",
-            "modelAsString": true
+        "order": {
+          "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
+          "type": "integer"
+        },
+        "conditions": {
+          "description": "A list of conditions that must be matched for the actions to be executed",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeliveryRuleCondition"
+          }
+        },
+        "actions": {
+          "description": "A list of actions that are executed when all the conditions of a rule are satisfied.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeliveryRuleAction"
           }
         }
       }
@@ -8462,193 +8635,6 @@
         "sslEnabled": {
           "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
           "type": "boolean"
-        }
-      }
-    },
-    "AFDCDNEndpoint": {
-      "description": "CDN endpoint is the entity within a CDN profile containing configuration information such as origin, protocol, content caching and delivery behavior. The AFDX endpoint uses the URL format <endpointname>.azureedge.net.",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/TrackedResource"
-        }
-      ],
-      "properties": {
-        "properties": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/AFDCDNEndpointProperties"
-        }
-      }
-    },
-    "AFDCDNEndpointProperties": {
-      "description": "The JSON object that contains the properties required to create an endpoint.",
-      "required": [
-        "origins"
-      ],
-      "allOf": [
-        {
-          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
-        }
-      ],
-      "properties": {
-        "hostName": {
-          "description": "The host name of the endpoint structured as {endpointName}.{DNSZone}, e.g. contoso.azureedge.net",
-          "type": "string",
-          "readOnly": true
-        },
-        "resourceState": {
-          "description": "Resource status of the endpoint.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Deleting",
-            "Running",
-            "Starting",
-            "Stopped",
-            "Stopping"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "EndpointResourceState",
-            "modelAsString": true
-          }
-        },
-        "provisioningState": {
-          "readOnly": true,
-          "description": "Provisioning status of the endpoint.",
-          "type": "string"
-        }
-      }
-    },
-    "AFDCDNEndpointListResult": {
-      "description": "Result of the request to list endpoints. It contains a list of endpoint objects and a URL link to get the next set of results.",
-      "properties": {
-        "value": {
-          "type": "array",
-          "readOnly": true,
-          "items": {
-            "$ref": "#/definitions/AFDCDNEndpoint"
-          },
-          "description": "List of AFDX endpoints within a profile"
-        },
-        "nextLink": {
-          "type": "string",
-          "description": "URL to get the next set of endpoint objects if there is any."
-        }
-      }
-    },
-    "AFDCDNEndpointUpdateParameters": {
-      "type": "object",
-      "description": "Properties required to create or update an endpoint.",
-      "properties": {
-        "tags": {
-          "description": "Endpoint tags.",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "properties": {
-          "x-ms-client-flatten": true,
-          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
-        }
-      },
-      "x-ms-azure-resource": true
-    },
-    "AFDCDNEndpointPropertiesUpdateParameters": {
-      "description": "The JSON object containing endpoint update parameters.",
-      "properties": {
-        "domains": {
-          "description": "Domains referenced by this endpoint.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ResourceReference"
-          }
-        },
-        "originGroup": {
-          "description": "A reference to the origin group.",
-          "type": "object",
-          "$ref": "#/definitions/ResourceReference"
-        },
-        "originPath": {
-          "description": "A directory path on the origin that AFDX can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
-          "type": "string"
-        },
-        "contentTypesToCompress": {
-          "description": "List of content types on which compression applies. The value should be a valid MIME type.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "isCompressionEnabled": {
-          "description": "Indicates whether content compression is enabled on AFDX. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AFDX when requested content is smaller than 1 byte or larger than 1 MB.",
-          "type": "boolean"
-        },
-        "supportedProtocols": {
-          "description": "List of supported protocols for the customer's endpoint.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AFDCDNEndpointProtocols"
-          }
-        },
-        "queryStringCachingBehavior": {
-          "description": "Defines how AFDX caches requests that include query strings. You can ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being cached, or cache every request with a unique URL.",
-          "$ref": "#/definitions/QueryStringCachingBehavior"
-        },
-        "optimizationType": {
-          "description": "Specifies what scenario the customer wants this AFDX endpoint to optimize for, e.g. Download, Media services. With this information, AFDX can apply scenario driven optimization.",
-          "$ref": "#/definitions/OptimizationType"
-        },
-        "probePath": {
-          "description": "Path to a file hosted on the origin which helps accelerate delivery of the dynamic content and calculate the most optimal routes for the AFDX. This is relative to the origin path. This property is only relevant when using a single origin.",
-          "type": "string"
-        },
-        "geoFilters": {
-          "description": "List of rules defining the user's geo access within a AFDX endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/GeoFilter"
-          }
-        },
-        "webApplicationFirewallPolicy": {
-          "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string",
-              "description": "Resource ID."
-            }
-          }
-        }
-      }
-    },
-    "AFDCDNEndpointProtocols": {
-      "description": "Supported protocols for the customer's endpoint.",
-      "enum": [
-        "Http",
-        "Https"
-      ],
-      "type": "string",
-      "x-ms-enum": {
-        "name": "EndpointProtocols",
-        "modelAsString": true
-      }
-    },
-    "DeliveryRuleListResult": {
-      "description": "Result of the request to list delivery rules. It contains a list of delivery rule objects and a URL link to get the next set of results.",
-      "properties": {
-        "value": {
-          "type": "array",
-          "readOnly": true,
-          "items": {
-            "$ref": "#/definitions/DeliveryRule"
-          },
-          "description": "List of AFDX delivery rules within an endpoint"
-        },
-        "nextLink": {
-          "type": "string",
-          "description": "URL to get the next set of delivery rule objects if there are any."
         }
       }
     }
