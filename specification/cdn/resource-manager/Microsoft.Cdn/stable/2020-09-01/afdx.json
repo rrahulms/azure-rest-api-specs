@@ -3820,17 +3820,18 @@
           }
         },
         "x-ms-long-running-operation": true
-      },
+      }
+    },
       "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes": {
         "get": {
           "tags": [
-            "Routes"
+            "AFDCDNOrigins"
           ],
-          "description": "Lists existing AFDX routes.",
-          "operationId": "Routes_ListByEndpoint",
+          "description": "Lists all of the existing origins within a profile.",
+          "operationId": "AFDCDNRoutes_ListByEndpoint",
           "x-ms-examples": {
-            "Routes_ListByEndpoint": {
-              "$ref": "./examples/Routes_ListByEndpoint.json"
+            "AFDCDNRoutes_ListByEndpoint": {
+              "$ref": "./examples/AFDCDNRoutes_ListByEndpoint.json"
             }
           },
           "parameters": [
@@ -3841,6 +3842,13 @@
               "name": "profileName",
               "in": "path",
               "description": "Name of the CDN profile which is unique within the resource group.",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "originGroupName",
+              "in": "path",
+              "description": "Name of the origin group which is unique within the profile.",
               "required": true,
               "type": "string"
             },
@@ -3862,7 +3870,7 @@
             "200": {
               "description": "OK",
               "schema": {
-                "$ref": "#/definitions/RouteListResult"
+                "$ref": "#/definitions/OriginListResult"
               }
             },
             "default": {
@@ -3876,8 +3884,7 @@
             "nextLinkName": "nextLink"
           }
         }
-      }
-    },
+      },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes/{routeName}": {
       "get": {
         "tags": [
@@ -4486,7 +4493,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/DeliveryRuleListResult"
+              "$ref": "#/definitions/RuleListResult"
             }
           },
           "default": {
@@ -8375,7 +8382,7 @@
       }
     },
     "RuleSetListResult": {
-      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "description": "Result of the request to list rule sets. It contains a list of key objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
@@ -8383,11 +8390,11 @@
           "items": {
             "$ref": "#/definitions/RuleSet"
           },
-          "description": "List of AFDX keys within a profile."
+          "description": "List of AFDX rule sets within a profile."
         },
         "nextLink": {
           "type": "string",
-          "description": "URL to get the next set of key objects if there are any."
+          "description": "URL to get the next set of rule set objects if there are any."
         }
       }
     },
@@ -8407,18 +8414,14 @@
       }
     },
     "RuleSetProperties": {
-      "description": "The JSON object that contains the properties of the RuleSet to create.",
-      "required": [
-        "type"
+      "description": "The JSON object that contains the properties of the Rule Set to create.",
+      "type": "object",    
+      "allOf": [
+        {
+          "$ref": "#/definitions/OriginGroupUpdatePropertiesParameters"
+        }
       ],
       "properties": {
-        "type": {
-          "description": "The type of the RuleSet to create.",
-          "enum": [
-            "UrlSigningRuleSet"
-          ],
-          "type": "string"
-        },
         "resourceState": {
           "description": "Resource status of the RuleSet.",
           "readOnly": true,
@@ -8432,16 +8435,21 @@
             "name": "DomainResourceState",
             "modelAsString": true
           }
+        },
+      "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status of the origin group.",
+          "type": "string"
         }
       }
     },
     "RuleSetUpdateParameters": {
-      "description": "The domain JSON object required for domain creation or update.",
+      "description": "The rule set JSON object required for rule set creation or update.",
       "type": "object",
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+          "$ref": "#/definitions/RuleSetUpdatePropertiesParameters"
         }
       }
     },
@@ -8499,12 +8507,29 @@
         "type"
       ],
       "properties": {
-        "type": {
-          "description": "The type of the Routes to create.",
-          "enum": [
-            "UrlSigningRoutes"
-          ],
-          "type": "string"
+        "domains": {
+          "description": "Domains referenced by this endpoint.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "originGroup": {
+          "description": "A reference to the origin group.",
+          "type": "object",
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "ruleSet": {
+          "description": "rule sets referenced by this endpoint.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "webApplicationFirewallPolicy": {
+          "description": "A reference to the WAFs.",
+          "type": "object",
+          "$ref": "#/definitions/ResourceReference"
         },
         "resourceState": {
           "description": "Resource status of the Routes.",
@@ -8625,16 +8650,31 @@
     "RuleUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the domain to create.",
       "required": [
-        "hostName"
+        "order",
+        "actions"
       ],
       "properties": {
-        "hostName": {
-          "description": "The host name of the domain. Must be a domain name.",
+        "name": {
+          "description": "Name of the rule",
           "type": "string"
         },
-        "sslEnabled": {
-          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
-          "type": "boolean"
+        "order": {
+          "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
+          "type": "integer"
+        },
+        "conditions": {
+          "description": "A list of conditions that must be matched for the actions to be executed",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeliveryRuleCondition"
+          }
+        },
+        "actions": {
+          "description": "A list of actions that are executed when all the conditions of a rule are satisfied.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeliveryRuleAction"
+          }
         }
       }
     }
