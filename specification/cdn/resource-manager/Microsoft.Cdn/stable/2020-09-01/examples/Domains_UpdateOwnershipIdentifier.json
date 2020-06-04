@@ -4,11 +4,32 @@
       "subscriptionId": "subid",
       "resourceGroupName": "RG",
       "profileName": "profile1",
-      "domainName": "domain1"
+      "domainName": "domain1",
+      "domainOwnershipIdentifier": {
+        "properties": {
+            "ownershipId": "owner1"
+        }
+      }
     },
     "responses": {
-      "202": {},
-      "204": {}
+      "202": {
+        "body":{
+          "domainOwnershipIdentifier": {
+            "properties": {
+                "ownershipId": "owner1"
+            }
+          }
+        }
+      },
+      "204": {
+        "body":{
+          "domainOwnershipIdentifier": {
+            "properties": {
+                "ownershipId": "owner1"
+            }
+          }
+        }
+      }
     }
   }
   

@@ -5,7 +5,7 @@
       "resourceGroupName": "RG",
       "profileName": "profile1",
       "endpointName": "endpoint1",
-      "endpoint": {
+      "endpointUpdateProperties": {
         "tags": {},
         "location": "CentralUs",
         "properties": {

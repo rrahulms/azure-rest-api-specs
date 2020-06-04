@@ -2635,7 +2635,7 @@
             "type": "string"
           },
           {
-            "name": "domain",
+            "name": "domainUpdateProperties",
             "in": "body",
             "description": "Domain properties",
             "required": true,
@@ -2756,6 +2756,15 @@
             "type": "string"
           },
           {
+            "name": "domainOwnershipIdentifier",
+            "in": "body",
+            "description": "A JSON representation of the domain ownership properties.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DomainOwnershipIdentifier"
+            }
+          },
+          {
             "$ref": "#/parameters/subscriptionIdParameter"
           },
           {
@@ -2764,10 +2773,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DomainOwnershipIdentifier"
+            }
           },
           "202": {
-            "description": "Accepted"
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/DomainOwnershipIdentifier"
+            }
           },
           "default": {
             "description": "CDN error response describing why the operation failed.",
@@ -3498,11 +3513,11 @@
         "tags": [
           "AFDCDNOrigins"
         ],
-        "description": "Lists all of the existing origins within a profile.",
-        "operationId": "AFDCDNOrigins_ListByProfile",
+        "description": "Lists all of the existing origins within an origin group.",
+        "operationId": "AFDCDNOrigins_ListByOriginGroup",
         "x-ms-examples": {
-          "AFDCDNOrigins_ListByProfile": {
-            "$ref": "./examples/AFDCDNOrigins_ListByProfile.json"
+          "AFDCDNOrigins_ListByOriginGroup": {
+            "$ref": "./examples/AFDCDNOrigins_ListByOriginGroup.json"
           }
         },
         "parameters": [
@@ -3554,7 +3569,7 @@
         "tags": [
           "AFDCDNOrigins"
         ],
-        "description": "Gets an existing origin within a profile.",
+        "description": "Gets an existing origin within an origin group.",
         "operationId": "AFDCDNOrigins_Get",
         "x-ms-examples": {
           "AFDCDNOrigins_Get": {
@@ -3612,7 +3627,7 @@
         "tags": [
           "AFDCDNOrigins"
         ],
-        "description": "Creates a new origin within the specified profile.",
+        "description": "Creates a new origin within the specified origin group.",
         "operationId": "AFDCDNOrigins_Create",
         "x-ms-examples": {
           "AFDCDNOrigins_Create": {
@@ -3692,7 +3707,7 @@
         "tags": [
           "AFDCDNOrigins"
         ],
-        "description": "Updates an existing origin within a profile.",
+        "description": "Updates an existing origin within an origin group.",
         "operationId": "AFDCDNOrigins_Update",
         "x-ms-examples": {
           "AFDCDNOrigins_Update": {
@@ -3766,7 +3781,7 @@
         "tags": [
           "AFDCDNOrigins"
         ],
-        "description": "Deletes an existing origin within a profile.",
+        "description": "Deletes an existing origin within an origin group.",
         "operationId": "AFDCDNOrigins_Delete",
         "x-ms-examples": {
           "AFDCDNOrigins_Delete": {
@@ -3825,13 +3840,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes": {
       "get": {
         "tags": [
-          "AFDCDNOrigins"
+          "Routes"
         ],
         "description": "Lists all of the existing origins within a profile.",
-        "operationId": "AFDCDNRoutes_ListByEndpoint",
+        "operationId": "Routes_ListByEndpoint",
         "x-ms-examples": {
-          "AFDCDNRoutes_ListByEndpoint": {
-            "$ref": "./examples/AFDCDNRoutes_ListByEndpoint.json"
+          "Routes_ListByEndpoint": {
+            "$ref": "./examples/Routes_ListByEndpoint.json"
           }
         },
         "parameters": [
@@ -3842,13 +3857,6 @@
             "name": "profileName",
             "in": "path",
             "description": "Name of the CDN profile which is unique within the resource group.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "originGroupName",
-            "in": "path",
-            "description": "Name of the origin group which is unique within the profile.",
             "required": true,
             "type": "string"
           },
@@ -4161,9 +4169,9 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets": {
       "get": {
         "tags": [
-          "RuleSet"
+          "RuleSets"
         ],
-        "description": "Lists existing AFDX rule sets.",
+        "description": "Lists existing AFDX rule sets within a profile.",
         "operationId": "RuleSet_ListByProfile",
         "x-ms-examples": {
           "RuleSet_ListByProfile": {
@@ -4210,7 +4218,7 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}": {
       "get": {
         "tags": [
-          "RuleSet"
+          "RuleSets"
         ],
         "description": "Gets an existing AFDX rule set with the specified rule set name under the specified subscription, resource group and profile.",
         "operationId": "RuleSet_Get",
@@ -4261,7 +4269,7 @@
       },
       "put": {
         "tags": [
-          "RuleSet"
+          "RuleSets"
         ],
         "description": "Creates a new rule set within the specified profile.",
         "operationId": "RuleSet_Create",
@@ -4289,7 +4297,7 @@
             "type": "string"
           },
           {
-            "name": "rule set",
+            "name": "ruleSet",
             "in": "body",
             "description": "RuleSet properties",
             "required": true,
@@ -4334,7 +4342,7 @@
       },
       "patch": {
         "tags": [
-          "RuleSet"
+          "RuleSets"
         ],
         "description": "Updates an existing rule set within a profile.",
         "operationId": "RuleSet_Update",
@@ -4362,7 +4370,7 @@
             "type": "string"
           },
           {
-            "name": "rule set",
+            "name": "ruleSetUpdateProperties",
             "in": "body",
             "description": "RuleSet properties",
             "required": true,
@@ -4401,7 +4409,7 @@
       },
       "delete": {
         "tags": [
-          "RuleSet"
+          "RuleSets"
         ],
         "description": "Deletes an existing AFDX rule set with the specified rule set name under the specified subscription, resource group and profile.",
         "operationId": "RuleSet_Delete",
@@ -8209,7 +8217,8 @@
         "ownershipIdentifier": {
           "description": "Challenge used for DNS TXT record or file based validation",
           "readOnly": true,
-          "type": "string"
+          "type": "object",
+          "$ref": "#/definitions/DomainOwnershipIdentifier"
         },
         "azureDnsZone": {
           "description": "Resource reference to the Azure DNS zone",
@@ -8323,6 +8332,22 @@
         "AutoRedirectToHttps": {
           "description": "Redirect to https",
           "type": "boolean"
+        }
+      }
+    },
+    "DomainOwnershipIdentifier": {
+      "description": "Domain ownership Identifier.",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "description": "DomainOwnershipIdentifier resource specific properties",
+          "properties": {
+            "ownershipId": {
+              "description": "Ownership Id.",
+              "type": "string"
+            }
+          },
+          "x-ms-client-flatten": true
         }
       }
     },
@@ -8691,21 +8716,16 @@
     "RuleSetUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the domain to create.",
       "required": [
-        "rules",
-        "order"
+        "rules"
       ],
       "properties": {
         "rules": {
-          "description": "The rules within given rule set.",
+          "description": "The source of the content being delivered via CDN within given origin group.",
           "type": "array",
           "items": {
             "description": "A reference to a rule.",
             "$ref": "#/definitions/ResourceReference"
           }
-        },
-        "order": {
-          "description": "order of the rule set.",
-          "type": "integer"
         }
       }
     },
@@ -8785,12 +8805,12 @@
             "$ref": "#/definitions/ResourceReference"
           }
         },
-        "originGroup": {
+        "originGroups": {
           "description": "A reference to the origin group.",
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
         },
-        "ruleSet": {
+        "ruleSets": {
           "description": "rule sets referenced by this endpoint.",
           "type": "array",
           "items": {
@@ -8855,30 +8875,11 @@
         "order",
         "actions"
       ],
-      "properties": {
-        "name": {
-          "description": "Name of the rule",
-          "type": "string"
-        },
-        "order": {
-          "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
-          "type": "integer"
-        },
-        "conditions": {
-          "description": "A list of conditions that must be matched for the actions to be executed",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeliveryRuleCondition"
-          }
-        },
-        "actions": {
-          "description": "A list of actions that are executed when all the conditions of a rule are satisfied.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeliveryRuleAction"
-          }
+      "allOf": [
+        {
+          "$ref": "#/definitions/RuleUpdatePropertiesParameters"
         }
-      }
+      ]     
     },
     "RuleUpdateParameters": {
       "description": "The domain JSON object required for domain creation or update.",
@@ -8897,10 +8898,6 @@
         "actions"
       ],
       "properties": {
-        "name": {
-          "description": "Name of the rule",
-          "type": "string"
-        },
         "order": {
           "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
           "type": "integer"

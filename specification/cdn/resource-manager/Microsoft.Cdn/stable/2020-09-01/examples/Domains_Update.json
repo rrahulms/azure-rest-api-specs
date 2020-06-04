@@ -5,7 +5,7 @@
       "resourceGroupName": "RG",
       "profileName": "profile1",
       "domainName": "domain1",
-      "domain": {
+      "domainUpdateProperties": {
         "properties": {
             "sslEnabled": true,
             "ipv4Only": false
