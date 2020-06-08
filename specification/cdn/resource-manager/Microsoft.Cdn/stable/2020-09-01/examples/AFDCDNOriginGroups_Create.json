@@ -22,6 +22,7 @@
               "responseBasedDetectedErrorTypes": "TcpErrorsOnly",
               "responseBasedFailoverThresholdPercentage": 10
             }
+          }
       }
     },
     "responses": {
@@ -116,5 +117,5 @@
           }       
       }
     }
-  }
+  
 } 

@@ -13,6 +13,7 @@
               "probeProtocol": "Http",
               "probeIntervalInSeconds": 120
             }
+        }   
       }
     },
     "responses": {
@@ -40,7 +41,8 @@
                   "responseBasedOriginErrorDetectionSettings": {
                     "responseBasedDetectedErrorTypes": "TcpErrorsOnly",
                     "responseBasedFailoverThresholdPercentage": 10
-                  }
+                  },
+                  "trafficRestorationTimeToHealedOrNewEndpointsInMinutes" : 10
                 }
               }
             ]
@@ -70,12 +72,12 @@
                   "responseBasedOriginErrorDetectionSettings": {
                     "responseBasedDetectedErrorTypes": "TcpErrorsOnly",
                     "responseBasedFailoverThresholdPercentage": 10
-                  }
+                  },
+                  "trafficRestorationTimeToHealedOrNewEndpointsInMinutes" : 10
                 }
               }
             ]
           }       
       }
     }
-  }
 } 

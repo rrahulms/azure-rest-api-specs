@@ -20,6 +20,7 @@
                 }
             ],
             "supportedProtocols": ["Https", "Http"]
+            }   
         }
     },
     "responses": {
@@ -57,8 +58,7 @@
                 }
             }
           }
-        }
-      },
+        },
       "202": {
         "body": {
             "name": "endpoint1",
@@ -91,8 +91,9 @@
                 "webApplicationFirewallPolicy": {
                     "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Cdn/CdnWebApplicationFirewallPolicies/MicrosoftCdnWafPolicy1"
                 }
+                }
             }
-            }
+            
         }
     }    
 }
