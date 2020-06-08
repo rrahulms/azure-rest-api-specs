@@ -31,7 +31,7 @@
               "protocolType": "ServerNameIndication",
               "cipherSuites" : "RSA",
               "MinimumTLSVersion": "TLS12",
-              "AutoRedirectToHttps": true
+              "autoRedirectToHttps": true
             } 
         }
       }

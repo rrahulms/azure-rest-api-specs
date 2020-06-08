@@ -6545,7 +6545,7 @@
             "type": "string"
           }
         },
-        "AllowedUsers": {
+        "allowedUsers": {
           "description": "List of allowed users",
           "type": "array",
           "items": {
@@ -8347,7 +8347,7 @@
             "modelAsString": false
           }
         },
-        "AutoRedirectToHttps": {
+        "autoRedirectToHttps": {
           "description": "Redirect to https",
           "type": "boolean"
         }
@@ -8562,14 +8562,12 @@
       "allOf": [
         {
           "$ref": "#/definitions/ProxyResource"
-        },
-        {
-          "$ref": "#/definitions/KeyProperties"
         }
       ],
       "properties": {
         "properties": {
-          "x-ms-client-flatten": true
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/KeyProperties"
         }
       }
     },
@@ -8649,7 +8647,7 @@
             "type": "string"
           }
         },
-        "AllowedUsers": {
+        "allowedUsers": {
           "description": "List of allowed users",
           "type": "array",
           "items": {
@@ -8681,14 +8679,12 @@
       "allOf": [
         {
           "$ref": "#/definitions/ProxyResource"
-        },
-        {
-          "$ref": "#/definitions/RuleSetProperties"
         }
       ],
       "properties": {
         "properties": {
-          "x-ms-client-flatten": true
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/RuleSetProperties"
         }
       }
     },
@@ -8733,9 +8729,6 @@
     },
     "RuleSetUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the domain to create.",
-      "required": [
-        "rules"
-      ],
       "properties": {
         "rules": {
           "description": "The source of the content being delivered via CDN within given origin group.",

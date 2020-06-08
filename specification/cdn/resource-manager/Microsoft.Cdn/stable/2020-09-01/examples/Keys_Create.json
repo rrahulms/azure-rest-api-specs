@@ -12,7 +12,7 @@
             "algorithm":"SHA256",
             "parameterNameOverride":"",
             "ipSubnets":"0.0.0.0",
-            "AllowedUsers":"user1"
+            "allowedUsers":"user1"
           }
       }
     },
@@ -31,7 +31,7 @@
                 "algorithm":"SHA256",
                 "parameterNameOverride":"",
                 "ipSubnets":"0.0.0.0",
-                "AllowedUsers":"user1"
+                "allowedUsers":"user1"
               }
             }
           ]
@@ -51,7 +51,7 @@
                 "algorithm":"SHA256",
                 "parameterNameOverride":"",
                 "ipSubnets":"0.0.0.0",
-                "AllowedUsers":"user1"
+                "allowedUsers":"user1"
               }
             }
           ]
@@ -71,7 +71,7 @@
                 "algorithm":"SHA256",
                 "parameterNameOverride":"",
                 "ipSubnets":"0.0.0.0",
-                "AllowedUsers":"user1"
+                "allowedUsers":"user1"
               }
             }
           ]

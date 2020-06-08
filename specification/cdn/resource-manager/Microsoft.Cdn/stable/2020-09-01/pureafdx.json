@@ -2037,7 +2037,7 @@
                   "modelAsString": false
                 }
               },
-              "AutoRedirectToHttps": {
+              "autoRedirectToHttps": {
                 "description": "Redirect to https",
                 "type": "boolean"
               }
