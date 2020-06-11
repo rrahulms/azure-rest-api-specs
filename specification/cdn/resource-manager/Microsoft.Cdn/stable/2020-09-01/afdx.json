@@ -8505,6 +8505,18 @@
             }
           }
         },
+        "sessionAffinityState": {
+          "description": "Whether to allow session affinity on this host. Valid options are 'Enabled' or 'Disabled'",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "sessionAffinityState",
+            "modelAsString": true
+          }
+        },
         "state": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
           "enum": [
@@ -9014,6 +9026,21 @@
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
         },
+        "supportedProtocols": {
+          "description": "List of supported protocols for this route.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AFDEndpointProtocols"
+          }
+        },
+        "patternsToMatch": {
+          "description": "The route patterns of the rule.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A route pattern of the rule. Must not have any * except possibly after the final / at the end of the path."
+          }
+        },
         "state": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
           "enum": [
@@ -9065,6 +9092,7 @@
       "type": "object",
       "required": [
         "order",
+        "name",
         "actions"
       ],
       "allOf": [
@@ -9097,6 +9125,10 @@
           "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
           "type": "integer"
         },
+        "name": {
+          "description": "A name to refer to this specific rule.",
+          "type": "string"
+        },
         "conditions": {
           "description": "A list of conditions that must be matched for the actions to be executed",
           "type": "array",
@@ -9109,6 +9141,18 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/DeliveryRuleAction"
+          }
+        },
+        "matchProcessingBehavior": {
+          "description": "If this rule is a match should the rules engine continue running the remaining rules or stop. If not present, defaults to Continue.",
+          "type": "string",
+          "enum": [
+            "Continue",
+            "Stop"
+          ],
+          "x-ms-enum": {
+            "name": "MatchProcessingBehavior",
+            "modelAsString": true
           }
         }
       }
