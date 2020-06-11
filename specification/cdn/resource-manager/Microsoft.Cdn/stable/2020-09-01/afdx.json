@@ -8276,6 +8276,18 @@
           "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
           "type": "object",
           "$ref": "#/definitions/DomainHttpsParameters"
+        },
+        "state": {
+          "description": "Operational status of the Front Door load balancer. Permitted values are 'Enabled' or 'Disabled'",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "FrontDoorEnabledState",
+            "modelAsString": true
+          }
         }
       }
     },
@@ -8510,9 +8522,24 @@
             "modelAsString": true
           }
         },
-        "sessionAffinityTtlSeconds": {
-          "description": "UNUSED. This field will be ignored. The TTL to use in seconds for session affinity, if applicable.",
-          "type": "integer"
+        "enforceCertificateNameCheck": {
+          "description": "Whether to enforce certificate name check on HTTPS requests to the origin group. No effect on non-HTTPS requests.",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "enforceCertificateNameCheckEnabledState",
+            "modelAsString": true
+          },
+          "default": "Enabled"
+        },
+        "sendRecvTimeoutSeconds": {
+          "description": "Send and receive timeout on forwarding request to the origin. When timeout is reached, the request fails and returns.",
+          "type": "integer",
+          "minimum": 16,
+          "exclusiveMinimum": false
         },
         "state": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
@@ -9034,9 +9061,9 @@
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
         },
-        "ruleSets": {
-          "description": "rule sets referenced by this endpoint.",
-          "type": "array",
+        "ruleSet": {
+          "description": "rule set referenced by this endpoint.",
+          "type": "object",
           "items": {
             "$ref": "#/definitions/ResourceReference"
           }
