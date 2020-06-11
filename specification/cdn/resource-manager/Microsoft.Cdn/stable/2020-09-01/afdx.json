@@ -2794,16 +2794,16 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints": {
       "get": {
         "tags": [
-          "AFDCDNEndpoints"
+          "AFDEndpoints"
         ],
         "description": "Lists existing AFDX endpoints.",
-        "operationId": "AFDCDNEndpoints_ListByProfile",
+        "operationId": "AFDEndpoints_ListByProfile",
         "x-ms-examples": {
-          "AFDCDNEndpoints_ListByProfile": {
-            "$ref": "./examples/AFDCDNEndpoints_ListByProfile.json"
+          "AFDEndpoints_ListByProfile": {
+            "$ref": "./examples/AFDEndpoints_ListByProfile.json"
           }
         },
         "parameters": [
@@ -2828,7 +2828,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpointListResult"
+              "$ref": "#/definitions/AFDEndpointListResult"
             }
           },
           "default": {
@@ -2843,16 +2843,16 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}": {
       "get": {
         "tags": [
-          "AFDCDNEndpoints"
+          "AFDEndpoints"
         ],
         "description": "Gets an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
-        "operationId": "AFDCDNEndpoints_Get",
+        "operationId": "AFDEndpoints_Get",
         "x-ms-examples": {
-          "AFDCDNEndpoints_Get": {
-            "$ref": "./examples/AFDCDNEndpoints_Get.json"
+          "AFDEndpoints_Get": {
+            "$ref": "./examples/AFDEndpoints_Get.json"
           }
         },
         "parameters": [
@@ -2884,7 +2884,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           "default": {
@@ -2897,13 +2897,13 @@
       },
       "put": {
         "tags": [
-          "AFDCDNEndpoints"
+          "AFDEndpoints"
         ],
         "description": "Creates a new AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
-        "operationId": "AFDCDNEndpoints_Create",
+        "operationId": "AFDEndpoints_Create",
         "x-ms-examples": {
-          "AFDCDNEndpoints_Create": {
-            "$ref": "./examples/AFDCDNEndpoints_Create.json"
+          "AFDEndpoints_Create": {
+            "$ref": "./examples/AFDEndpoints_Create.json"
           }
         },
         "parameters": [
@@ -2930,7 +2930,7 @@
             "description": "Endpoint properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           {
@@ -2944,19 +2944,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new endpoint has been created.",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           "default": {
@@ -2970,13 +2970,13 @@
       },
       "patch": {
         "tags": [
-          "AFDCDNEndpoints"
+          "AFDEndpoints"
         ],
         "description": "Updates an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile. Only tags can be updated after creating an endpoint. To update origins, use the Update Origin operation. To update origin groups, use the Update Origin group operation. To update domains, use the Update Custom Domain operation.",
-        "operationId": "AFDCDNEndpoints_Update",
+        "operationId": "AFDEndpoints_Update",
         "x-ms-examples": {
-          "AFDCDNEndpoints_Update": {
-            "$ref": "./examples/AFDCDNEndpoints_Update.json"
+          "AFDEndpoints_Update": {
+            "$ref": "./examples/AFDEndpoints_Update.json"
           }
         },
         "parameters": [
@@ -3003,7 +3003,7 @@
             "description": "Endpoint update properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpointUpdateParameters"
+              "$ref": "#/definitions/AFDEndpointUpdateParameters"
             }
           },
           {
@@ -3017,13 +3017,13 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/AFDCDNEndpoint"
+              "$ref": "#/definitions/AFDEndpoint"
             }
           },
           "default": {
@@ -3037,13 +3037,13 @@
       },
       "delete": {
         "tags": [
-          "AFDCDNEndpoints"
+          "AFDEndpoints"
         ],
         "description": "Deletes an existing AFDX endpoint with the specified endpoint name under the specified subscription, resource group and profile.",
-        "operationId": "AFDCDNEndpoints_Delete",
+        "operationId": "AFDEndpoints_Delete",
         "x-ms-examples": {
-          "AFDCDNEndpoints_Delete": {
-            "$ref": "./examples/AFDCDNEndpoints_Delete.json"
+          "AFDEndpoints_Delete": {
+            "$ref": "./examples/AFDEndpoints_Delete.json"
           }
         },
         "parameters": [
@@ -3088,16 +3088,16 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/purge": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/purge": {
       "post": {
         "tags": [
           "Endpoints"
         ],
         "description": "Removes a content from AFDX.",
-        "operationId": "AFDCDNEndpoints_PurgeContent",
+        "operationId": "AFDEndpoints_PurgeContent",
         "x-ms-examples": {
-          "AFDCDNEndpoints_PurgeContent": {
-            "$ref": "./examples/AFDCDNEndpoints_PurgeContent.json"
+          "AFDEndpoints_PurgeContent": {
+            "$ref": "./examples/AFDEndpoints_PurgeContent.json"
           }
         },
         "parameters": [
@@ -3151,16 +3151,16 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/load": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/load": {
       "post": {
         "tags": [
           "Endpoints"
         ],
         "description": "Pre-loads a content to AFDX.",
-        "operationId": "AFDCDNEndpoints_LoadContent",
+        "operationId": "AFDEndpoints_LoadContent",
         "x-ms-examples": {
-          "AFDCDNEndpoints_LoadContent": {
-            "$ref": "./examples/AFDCDNEndpoints_LoadContent.json"
+          "AFDEndpoints_LoadContent": {
+            "$ref": "./examples/AFDEndpoints_LoadContent.json"
           }
         },
         "parameters": [
@@ -3220,10 +3220,10 @@
           "OriginGroups"
         ],
         "description": "Lists all of the existing origin groups within a profile.",
-        "operationId": "AFDCDNOriginGroups_ListByProfile",
+        "operationId": "AFDOriginGroups_ListByProfile",
         "x-ms-examples": {
-          "AFDCDNOriginGroups_ListByProfile": {
-            "$ref": "./examples/AFDCDNOriginGroups_ListByProfile.json"
+          "AFDOriginGroups_ListByProfile": {
+            "$ref": "./examples/AFDOriginGroups_ListByProfile.json"
           }
         },
         "parameters": [
@@ -3248,7 +3248,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/OriginGroupListResult"
+              "$ref": "#/definitions/AFDOriginGroupListResult"
             }
           },
           "default": {
@@ -3269,10 +3269,10 @@
           "OriginGroups"
         ],
         "description": "Gets an existing origin group within a profile.",
-        "operationId": "AFDCDNOriginGroups_Get",
+        "operationId": "AFDOriginGroups_Get",
         "x-ms-examples": {
-          "AFDCDNOriginGroups_Get": {
-            "$ref": "./examples/AFDCDNOriginGroups_Get.json"
+          "AFDOriginGroups_Get": {
+            "$ref": "./examples/AFDOriginGroups_Get.json"
           }
         },
         "parameters": [
@@ -3289,7 +3289,7 @@
           {
             "name": "originGroupName",
             "in": "path",
-            "description": "Name of the origin group which is unique within the profile.",
+            "description": "Name of the origin group which is unique within the endpoint.",
             "required": true,
             "type": "string"
           },
@@ -3304,7 +3304,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           "default": {
@@ -3320,10 +3320,10 @@
           "OriginGroups"
         ],
         "description": "Creates a new origin group within the specified profile.",
-        "operationId": "AFDCDNOriginGroups_Create",
+        "operationId": "AFDOriginGroups_Create",
         "x-ms-examples": {
-          "AFDCDNOriginGroups_Create": {
-            "$ref": "./examples/AFDCDNOriginGroups_Create.json"
+          "AFDOriginGroups_Create": {
+            "$ref": "./examples/AFDOriginGroups_Create.json"
           }
         },
         "parameters": [
@@ -3340,7 +3340,7 @@
           {
             "name": "originGroupName",
             "in": "path",
-            "description": "Name of the origin group which is unique within the profile.",
+            "description": "Name of the origin group which is unique within the endpoint.",
             "required": true,
             "type": "string"
           },
@@ -3350,7 +3350,7 @@
             "description": "Origin group properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           {
@@ -3364,19 +3364,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new origin group has been created.",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           "default": {
@@ -3393,10 +3393,10 @@
           "OriginGroups"
         ],
         "description": "Updates an existing origin group within a profile.",
-        "operationId": "AFDCDNOriginGroups_Update",
+        "operationId": "AFDOriginGroups_Update",
         "x-ms-examples": {
-          "AFDCDNOriginGroups_Update": {
-            "$ref": "./examples/AFDCDNOriginGroups_Update.json"
+          "AFDOriginGroups_Update": {
+            "$ref": "./examples/AFDOriginGroups_Update.json"
           }
         },
         "parameters": [
@@ -3420,10 +3420,10 @@
           {
             "name": "originGroupUpdateProperties",
             "in": "body",
-            "description": "Origin group update properties",
+            "description": "Origin group properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/OriginGroupUpdateParameters"
+              "$ref": "#/definitions/AFDOriginGroupUpdateParameters"
             }
           },
           {
@@ -3437,13 +3437,13 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/OriginGroup"
+              "$ref": "#/definitions/AFDOriginGroup"
             }
           },
           "default": {
@@ -3460,10 +3460,10 @@
           "OriginGroups"
         ],
         "description": "Deletes an existing origin group within a profile.",
-        "operationId": "AFDCDNOriginGroups_Delete",
+        "operationId": "AFDOriginGroups_Delete",
         "x-ms-examples": {
-          "AFDCDNOriginGroups_Delete": {
-            "$ref": "./examples/AFDCDNOriginGroups_Delete.json"
+          "AFDOriginGroups_Delete": {
+            "$ref": "./examples/AFDOriginGroups_Delete.json"
           }
         },
         "parameters": [
@@ -3511,13 +3511,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins": {
       "get": {
         "tags": [
-          "AFDCDNOrigins"
+          "AFDOrigins"
         ],
         "description": "Lists all of the existing origins within an origin group.",
-        "operationId": "AFDCDNOrigins_ListByOriginGroup",
+        "operationId": "AFDOrigins_ListByOriginGroup",
         "x-ms-examples": {
-          "AFDCDNOrigins_ListByOriginGroup": {
-            "$ref": "./examples/AFDCDNOrigins_ListByOriginGroup.json"
+          "AFDOrigins_ListByOriginGroup": {
+            "$ref": "./examples/AFDOrigins_ListByOriginGroup.json"
           }
         },
         "parameters": [
@@ -3549,7 +3549,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/OriginListResult"
+              "$ref": "#/definitions/AFDOriginListResult"
             }
           },
           "default": {
@@ -3567,13 +3567,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins/{originName}": {
       "get": {
         "tags": [
-          "AFDCDNOrigins"
+          "AFDOrigins"
         ],
         "description": "Gets an existing origin within an origin group.",
-        "operationId": "AFDCDNOrigins_Get",
+        "operationId": "AFDOrigins_Get",
         "x-ms-examples": {
-          "AFDCDNOrigins_Get": {
-            "$ref": "./examples/AFDCDNOrigins_Get.json"
+          "AFDOrigins_Get": {
+            "$ref": "./examples/AFDOrigins_Get.json"
           }
         },
         "parameters": [
@@ -3612,7 +3612,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           "default": {
@@ -3625,13 +3625,13 @@
       },
       "put": {
         "tags": [
-          "AFDCDNOrigins"
+          "AFDOrigins"
         ],
         "description": "Creates a new origin within the specified origin group.",
-        "operationId": "AFDCDNOrigins_Create",
+        "operationId": "AFDOrigins_Create",
         "x-ms-examples": {
-          "AFDCDNOrigins_Create": {
-            "$ref": "./examples/AFDCDNOrigins_Create.json"
+          "AFDOrigins_Create": {
+            "$ref": "./examples/AFDOrigins_Create.json"
           }
         },
         "parameters": [
@@ -3665,7 +3665,7 @@
             "description": "Origin properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           {
@@ -3679,19 +3679,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new origin has been created.",
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           "default": {
@@ -3705,13 +3705,13 @@
       },
       "patch": {
         "tags": [
-          "AFDCDNOrigins"
+          "AFDOrigins"
         ],
         "description": "Updates an existing origin within an origin group.",
-        "operationId": "AFDCDNOrigins_Update",
+        "operationId": "AFDOrigins_Update",
         "x-ms-examples": {
-          "AFDCDNOrigins_Update": {
-            "$ref": "./examples/AFDCDNOrigins_Update.json"
+          "AFDOrigins_Update": {
+            "$ref": "./examples/AFDOrigins_Update.json"
           }
         },
         "parameters": [
@@ -3745,7 +3745,7 @@
             "description": "Origin properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/OriginUpdateParameters"
+              "$ref": "#/definitions/AFDOriginUpdateParameters"
             }
           },
           {
@@ -3759,13 +3759,13 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Origin"
+              "$ref": "#/definitions/AFDOrigin"
             }
           },
           "default": {
@@ -3779,13 +3779,13 @@
       },
       "delete": {
         "tags": [
-          "AFDCDNOrigins"
+          "AFDOrigins"
         ],
         "description": "Deletes an existing origin within an origin group.",
-        "operationId": "AFDCDNOrigins_Delete",
+        "operationId": "AFDOrigins_Delete",
         "x-ms-examples": {
-          "AFDCDNOrigins_Delete": {
-            "$ref": "./examples/AFDCDNOrigins_Delete.json"
+          "AFDOrigins_Delete": {
+            "$ref": "./examples/AFDOrigins_Delete.json"
           }
         },
         "parameters": [
@@ -3837,7 +3837,7 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/routes": {
       "get": {
         "tags": [
           "Routes"
@@ -3893,7 +3893,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdcdnEndpoints/{endpointName}/routes/{routeName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/routes/{routeName}": {
       "get": {
         "tags": [
           "Routes"
@@ -4783,10 +4783,10 @@
             "description": "CDN error response describing why the operation failed.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
-            }
+            }  
           }
         },
-        "x-ms-long-running-operation": true
+          "x-ms-long-running-operation": true
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
@@ -8150,20 +8150,6 @@
           "description": "The host name of the domain. Must be a domain name.",
           "type": "string"
         },
-        "resourceState": {
-          "description": "Resource status of the domain.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "DomainResourceState",
-            "modelAsString": true
-          }
-        },
         "domainProvisioningState": {
           "description": "Provisioning status of the domain.",
           "readOnly": true,
@@ -8247,6 +8233,11 @@
           "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
           "type": "object",
           "$ref": "#/definitions/DomainHttpsParameters"
+        },
+        "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status",
+          "type": "string"
         }
       }
     },
@@ -8347,7 +8338,7 @@
             "modelAsString": false
           }
         },
-        "autoRedirectToHttps": {
+        "AutoRedirectToHttps": {
           "description": "Redirect to https",
           "type": "boolean"
         }
@@ -8369,7 +8360,7 @@
         }
       }
     },
-    "AFDCDNEndpoint": {
+    "AFDEndpoint": {
       "description": "CDN endpoint is the entity within a CDN profile containing configuration information such as origin, protocol, content caching and delivery behavior. The AFDX endpoint uses the URL format <endpointname>.azureedge.net.",
       "type": "object",
       "allOf": [
@@ -8380,18 +8371,18 @@
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/AFDCDNEndpointProperties"
+          "$ref": "#/definitions/AFDEndpointProperties"
         }
       }
     },
-    "AFDCDNEndpointProperties": {
+    "AFDEndpointProperties": {
       "description": "The JSON object that contains the properties required to create an endpoint.",
       "required": [
         "origins"
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
+          "$ref": "#/definitions/AFDEndpointPropertiesUpdateParameters"
         }
       ],
       "properties": {
@@ -8424,14 +8415,14 @@
         }
       }
     },
-    "AFDCDNEndpointListResult": {
+    "AFDEndpointListResult": {
       "description": "Result of the request to list endpoints. It contains a list of endpoint objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/AFDCDNEndpoint"
+            "$ref": "#/definitions/AFDEndpoint"
           },
           "description": "List of AFDX endpoints within a profile"
         },
@@ -8441,7 +8432,7 @@
         }
       }
     },
-    "AFDCDNEndpointUpdateParameters": {
+    "AFDEndpointUpdateParameters": {
       "type": "object",
       "description": "Properties required to create or update an endpoint.",
       "properties": {
@@ -8454,12 +8445,12 @@
         },
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/AFDCDNEndpointPropertiesUpdateParameters"
+          "$ref": "#/definitions/AFDEndpointPropertiesUpdateParameters"
         }
       },
       "x-ms-azure-resource": true
     },
-    "AFDCDNEndpointPropertiesUpdateParameters": {
+    "AFDEndpointPropertiesUpdateParameters": {
       "description": "The JSON object containing endpoint update parameters.",
       "properties": {
         "domains": {
@@ -8493,7 +8484,7 @@
           "description": "List of supported protocols for the customer's endpoint.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/AFDCDNEndpointProtocols"
+            "$ref": "#/definitions/AFDEndpointProtocols"
           }
         },
         "queryStringCachingBehavior": {
@@ -8504,17 +8495,6 @@
           "description": "Specifies what scenario the customer wants this AFDX endpoint to optimize for, e.g. Download, Media services. With this information, AFDX can apply scenario driven optimization.",
           "$ref": "#/definitions/OptimizationType"
         },
-        "probePath": {
-          "description": "Path to a file hosted on the origin which helps accelerate delivery of the dynamic content and calculate the most optimal routes for the AFDX. This is relative to the origin path. This property is only relevant when using a single origin.",
-          "type": "string"
-        },
-        "geoFilters": {
-          "description": "List of rules defining the user's geo access within a AFDX endpoint. Each geo filter defines an access rule to a specified path or content, e.g. block APAC for path /pictures/",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/GeoFilter"
-          }
-        },
         "webApplicationFirewallPolicy": {
           "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
           "type": "object",
@@ -8524,10 +8504,22 @@
               "description": "Resource ID."
             }
           }
+        },
+        "state": {
+          "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "routesEnabledState",
+            "modelAsString": true
+          }
         }
       }
     },
-    "AFDCDNEndpointProtocols": {
+    "AFDEndpointProtocols": {
       "description": "Supported protocols for the customer's endpoint.",
       "enum": [
         "Http",
@@ -8589,19 +8581,10 @@
           ],
           "type": "string"
         },
-        "resourceState": {
-          "description": "Resource status of the key.",
+        "provisioningState": {
           "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "DomainResourceState",
-            "modelAsString": true
-          }
+          "description": "Provisioning status",
+          "type": "string"
         }
       }
     },
@@ -8697,19 +8680,10 @@
         }
       ],
       "properties": {
-        "resourceState": {
-          "description": "Resource status of the RuleSet.",
+        "provisioningState": {
           "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "RuleSetResourceState",
-            "modelAsString": true
-          }
+          "description": "Provisioning status",
+          "type": "string"
         }
       }
     },
@@ -8728,15 +8702,269 @@
       }
     },
     "RuleSetUpdatePropertiesParameters": {
-      "description": "The JSON object that contains the properties of the domain to create.",
+      "description": "The JSON object that contains the properties of the domain to create."
+    },
+    "AFDOrigin": {
+      "description": "CDN origin is the source of the content being delivered via CDN. When the edge nodes represented by an endpoint do not have the requested content cached, they attempt to fetch it from one or more of the configured origins.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/TrackedResource"
+        }
+      ],
       "properties": {
-        "rules": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/AFDOriginProperties"
+        }
+      }
+    },
+    "AFDOriginProperties": {
+      "description": "The JSON object that contains the properties of the origin.",
+      "required": [
+        "hostName"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/AFDOriginUpdatePropertiesParameters"
+        }
+      ],
+      "properties": {
+        "resourceState": {
+          "description": "Resource status of the origin.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Active",
+            "Deleting"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "AFDOriginResourceState",
+            "modelAsString": true
+          }
+        },
+        "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status of the origin.",
+          "type": "string"
+        },
+        "privateEndpointStatus": {
+          "description": "The approval status for the connection to the Private Link",
+          "type": "string",
+          "readOnly": true,
+          "enum": [
+            "Pending",
+            "Approved",
+            "Rejected",
+            "Disconnected",
+            "Timeout"
+          ],
+          "x-ms-enum": {
+            "name": "PrivateEndpointStatus",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "AFDOriginUpdateParameters": {
+      "type": "object",
+      "description": "AFDOrigin properties needed for origin update.",
+      "properties": {
+        "tags": {
+          "description": "AFDOrigin tags.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/AFDOriginUpdatePropertiesParameters"
+        }
+      },
+      "x-ms-azure-resource": true
+    },
+    "AFDOriginUpdatePropertiesParameters": {
+      "description": "The JSON object that contains the properties of the origin.",
+      "properties": {
+        "hostName": {
+          "description": "The address of the origin. Domain names, IPv4 addresses, and IPv6 addresses are supported.This should be unique across all origins in an endpoint.",
+          "type": "string"
+        },
+        "httpPort": {
+          "description": "The value of the HTTP port. Must be between 1 and 65535.",
+          "type": "integer",
+          "maximum": 65535,
+          "exclusiveMaximum": false,
+          "minimum": 1,
+          "exclusiveMinimum": false
+        },
+        "httpsPort": {
+          "description": "The value of the HTTPS port. Must be between 1 and 65535.",
+          "type": "integer",
+          "maximum": 65535,
+          "exclusiveMaximum": false,
+          "minimum": 1,
+          "exclusiveMinimum": false
+        },
+        "originHostHeader": {
+          "description": "The host header value sent to the origin with each request. If you leave this blank, the request hostname determines this value. Azure CDN origins, such as Web Apps, Blob Storage, and Cloud Services require this host header value to match the origin hostname by default. This overrides the host header defined at Endpoint",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority of origin in given origin group for load balancing. Higher priorities will not be used for load balancing if any lower priority origin is healthy.Must be between 1 and 5",
+          "type": "integer",
+          "maximum": 5,
+          "minimum": 1
+        },
+        "weight": {
+          "description": "Weight of the origin in given origin group for load balancing. Must be between 1 and 1000",
+          "type": "integer",
+          "maximum": 1000,
+          "minimum": 1
+        },
+        "enabled": {
+          "description": "AFDOrigin is enabled for load balancing or not",
+          "type": "boolean"
+        },
+        "privateLinkAlias": {
+          "description": "The Alias of the Private Link resource. Populating this optional field indicates that this origin is 'Private'",
+          "type": "string"
+        },
+        "privateLinkResourceId": {
+          "description": "The Resource Id of the Private Link resource. Populating this optional field indicates that this backend is 'Private'",
+          "type": "string"
+        },
+        "privateLinkLocation": {
+          "description": "The location of the Private Link resource. Required only if 'privateLinkResourceId' is populated",
+          "type": "string"
+        },
+        "privateLinkApprovalMessage": {
+          "description": "A custom message to be included in the approval request to connect to the Private Link.",
+          "type": "string"
+        }
+      }
+    },
+    "AFDOriginListResult": {
+      "description": "Result of the request to list origins. It contains a list of origin objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/AFDOrigin"
+          },
+          "description": "List of CDN origins within an endpoint"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of origin objects if there are any."
+        }
+      }
+    },
+    "AFDOriginGroup": {
+      "description": "AFDOrigin group comprising of origins is used for load balancing to origins when the content cannot be served from CDN.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/AFDOriginGroupProperties"
+        }
+      }
+    },
+    "AFDOriginGroupProperties": {
+      "description": "The JSON object that contains the properties of the origin group.",
+      "type": "object",
+      "required": [
+        "origins"
+      ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/AFDOriginGroupUpdatePropertiesParameters"
+        }
+      ],
+      "properties": {
+        "resourceState": {
+          "description": "Resource status of the origin group.",
+          "readOnly": true,
+          "enum": [
+            "Creating",
+            "Active",
+            "Deleting"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "AFDOriginGroupResourceState",
+            "modelAsString": true
+          }
+        },
+        "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status of the origin group.",
+          "type": "string"
+        }
+      }
+    },
+    "AFDOriginGroupUpdateParameters": {
+      "type": "object",
+      "description": "AFDOrigin group properties needed for origin group creation or update.",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "$ref": "#/definitions/AFDOriginGroupUpdatePropertiesParameters"
+        }
+      },
+      "x-ms-azure-resource": true
+    },
+    "AFDOriginGroupUpdatePropertiesParameters": {
+      "description": "The JSON object that contains the properties of the origin group.",
+      "properties": {
+        "healthProbeSettings": {
+          "description": "Health probe settings to the origin that is used to determine the health of the origin.",
+          "type": "object",
+          "$ref": "#/definitions/HealthProbeParameters"
+        },
+        "origins": {
           "description": "The source of the content being delivered via CDN within given origin group.",
           "type": "array",
           "items": {
-            "description": "A reference to a rule.",
+            "description": "A reference to a origin.",
             "$ref": "#/definitions/ResourceReference"
           }
+        },
+        "trafficRestorationTimeToHealedOrNewEndpointsInMinutes": {
+          "description": "Time in minutes to shift the traffic to the endpoint gradually when an unhealthy endpoint comes healthy or a new endpoint is added. Default is 10 mins. This property is currently not supported.",
+          "type": "integer",
+          "maximum": 50,
+          "minimum": 0
+        },
+        "responseBasedAFDOriginErrorDetectionSettings": {
+          "description": "The JSON object that contains the properties to determine origin health using real requests/responses. This property is currently not supported.",
+          "type": "object",
+          "$ref": "#/definitions/ResponseBasedOriginErrorDetectionParameters"
+        }
+      }
+    },
+    "AFDOriginGroupListResult": {
+      "description": "Result of the request to list origin groups. It contains a list of origin groups objects and a URL link to get the next set of results.",
+      "properties": {
+        "value": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/definitions/OriginGroup"
+          },
+          "description": "List of CDN origin groups within an endpoint"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "URL to get the next set of origin objects if there are any."
         }
       }
     },
@@ -8780,19 +9008,10 @@
         }
       ],
       "properties": {
-        "resourceState": {
-          "description": "Resource status of the Routes.",
+        "provisioningState": {
           "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "RouteResourceState",
-            "modelAsString": true
-          }
+          "description": "Provisioning status",
+          "type": "string"
         }
       }
     },
@@ -8816,7 +9035,7 @@
             "$ref": "#/definitions/ResourceReference"
           }
         },
-        "originGroups": {
+        "originGroup": {
           "description": "A reference to the origin group.",
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
@@ -8833,7 +9052,7 @@
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
         },
-        "enabledState": {
+        "state": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
           "enum": [
             "Enabled",
@@ -8890,7 +9109,14 @@
         {
           "$ref": "#/definitions/RuleUpdatePropertiesParameters"
         }
-      ]     
+      ],
+      "properties": {
+        "provisioningState": {
+          "readOnly": true,
+          "description": "Provisioning status",
+          "type": "string"
+        }
+      }
     },
     "RuleUpdateParameters": {
       "description": "The domain JSON object required for domain creation or update.",
