@@ -7321,6 +7321,18 @@
           "type": "integer",
           "maximum": 255,
           "minimum": 1
+        },
+        "state": {
+          "description": "Whether to enable health probes to be made against backends defined under backendPools. Health probes can only be disabled if there is a single enabled backend in single enabled backend pool.",
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "x-ms-enum": {
+            "name": "HealthProbeEnabled",
+            "modelAsString": true
+          }
         }
       }
     },
@@ -8802,6 +8814,18 @@
         "privateLinkApprovalMessage": {
           "description": "A custom message to be included in the approval request to connect to the Private Link.",
           "type": "string"
+        },
+        "state": {
+          "description": "Whether to enable health probes to be made against backends defined under backendPools. Health probes can only be disabled if there is a single enabled backend in single enabled backend pool.",
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "x-ms-enum": {
+            "name": "HealthProbeState",
+            "modelAsString": true
+          }
         }
       }
     },
@@ -8840,9 +8864,6 @@
     "AFDOriginGroupProperties": {
       "description": "The JSON object that contains the properties of the origin group.",
       "type": "object",
-      "required": [
-        "origins"
-      ],
       "allOf": [
         {
           "$ref": "#/definitions/AFDOriginGroupUpdatePropertiesParameters"
@@ -8884,18 +8905,14 @@
     "AFDOriginGroupUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the origin group.",
       "properties": {
+        "loadBalancingSettings": {
+          "description": "Load balancing settings for a backend pool",
+          "$ref": "#/definitions/LoadBalancingSettingsParameters"
+        },
         "healthProbeSettings": {
           "description": "Health probe settings to the origin that is used to determine the health of the origin.",
           "type": "object",
           "$ref": "#/definitions/HealthProbeParameters"
-        },
-        "origins": {
-          "description": "The source of the content being delivered via CDN within given origin group.",
-          "type": "array",
-          "items": {
-            "description": "A reference to a origin.",
-            "$ref": "#/definitions/ResourceReference"
-          }
         },
         "trafficRestorationTimeToHealedOrNewEndpointsInMinutes": {
           "description": "Time in minutes to shift the traffic to the endpoint gradually when an unhealthy endpoint comes healthy or a new endpoint is added. Default is 10 mins. This property is currently not supported.",
@@ -8910,6 +8927,24 @@
         }
       }
     },
+    "LoadBalancingSettingsParameters": {
+      "description": "Round-Robin load balancing settings for a backend pool",
+      "type": "object",
+      "properties": {
+        "sampleSize": {
+          "description": "The number of samples to consider for load balancing decisions",
+          "type": "integer"
+        },
+        "successfulSamplesRequired": {
+          "description": "The number of samples within the sample period that must succeed",
+          "type": "integer"
+        },
+        "additionalLatencyMilliseconds": {
+          "description": "The additional latency in milliseconds for probes to fall into the lowest latency bucket",
+          "type": "integer"
+        }
+      }
+    },
     "AFDOriginGroupListResult": {
       "description": "Result of the request to list origin groups. It contains a list of origin groups objects and a URL link to get the next set of results.",
       "properties": {
@@ -8917,7 +8952,7 @@
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/OriginGroup"
+            "$ref": "#/definitions/AFDOriginGroup"
           },
           "description": "List of CDN origin groups within an endpoint"
         },
