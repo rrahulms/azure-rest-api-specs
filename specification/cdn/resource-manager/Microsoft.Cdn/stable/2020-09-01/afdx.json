@@ -4783,10 +4783,10 @@
             "description": "CDN error response describing why the operation failed.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
-            }  
+            }
           }
         },
-          "x-ms-long-running-operation": true
+        "x-ms-long-running-operation": true
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
@@ -5080,7 +5080,7 @@
             }
           }
         },
-      "x-ms-long-running-operation": true
+        "x-ms-long-running-operation": true
       }
     }
   },
@@ -6516,10 +6516,10 @@
     "UrlSigningActionParameters": {
       "description": "Defines the parameters for the Url Signing action.",
       "required": [
-        "keyVaultReference"
+        "secret"
       ],
       "properties": {
-        "keyVaultReference": {
+        "secret": {
           "description": "Resource reference to the KV secret",
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
@@ -8599,45 +8599,7 @@
       }
     },
     "KeyUpdatePropertiesParameters": {
-      "description": "The JSON object that contains the properties of the domain to create.",
-      "required": [
-        "keyVaultReference"
-      ],
-      "properties": {
-        "keyVaultReference": {
-          "description": "Resource reference to the KV secret",
-          "type": "object",
-          "$ref": "#/definitions/ResourceReference"
-        },
-        "algorithm": {
-          "description": "Algorithm to use for URL signing",
-          "type": "string",
-          "enum": [
-            "SHA256"
-          ]
-        },
-        "parameterNameOverride": {
-          "description": "Defines which query string parameters in the url to be considered for expires, key id etc. ",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UrlSigningParamIdentifier"
-          }
-        },
-        "ipSubnets": {
-          "description": "Match values to match against. Supports CIDR ranges (both IPv4 and IPv6).",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "allowedUsers": {
-          "description": "List of allowed users",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
+      "description": "The JSON object that contains the properties of the domain to create."
     },
     "RuleSetListResult": {
       "description": "Result of the request to list rule sets. It contains a list of key objects and a URL link to get the next set of results.",
