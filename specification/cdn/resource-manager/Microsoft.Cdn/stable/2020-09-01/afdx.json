@@ -8145,11 +8145,12 @@
       "required": [
         "hostName"
       ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+        }
+      ],
       "properties": {
-        "hostName": {
-          "description": "The host name of the domain. Must be a domain name.",
-          "type": "string"
-        },
         "domainProvisioningState": {
           "description": "Provisioning status of the domain.",
           "readOnly": true,
@@ -8213,26 +8214,6 @@
             "name": "CustomHttpsProvisioningSubstate",
             "modelAsString": true
           }
-        },
-        "ipv4Only": {
-          "description": "IPv4 only frontend.",
-          "type": "boolean"
-        },
-        "ownershipIdentifier": {
-          "description": "Challenge used for DNS TXT record or file based validation",
-          "readOnly": true,
-          "type": "object",
-          "$ref": "#/definitions/DomainOwnershipIdentifier"
-        },
-        "azureDnsZone": {
-          "description": "Resource reference to the Azure DNS zone",
-          "type": "object",
-          "$ref": "#/definitions/ResourceReference"
-        },
-        "domainHttps": {
-          "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
-          "type": "object",
-          "$ref": "#/definitions/DomainHttpsParameters"
         },
         "provisioningState": {
           "readOnly": true,
@@ -8505,7 +8486,7 @@
             }
           }
         },
-        "sessionAffinityState": {
+        "sessionAffinityEnabledState": {
           "description": "Whether to allow session affinity on this host. Valid options are 'Enabled' or 'Disabled'",
           "enum": [
             "Enabled",
@@ -8513,9 +8494,13 @@
           ],
           "type": "string",
           "x-ms-enum": {
-            "name": "sessionAffinityState",
+            "name": "SessionAffinityEnabledState",
             "modelAsString": true
           }
+        },
+        "sessionAffinityTtlSeconds": {
+          "description": "UNUSED. This field will be ignored. The TTL to use in seconds for session affinity, if applicable.",
+          "type": "integer"
         },
         "state": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
