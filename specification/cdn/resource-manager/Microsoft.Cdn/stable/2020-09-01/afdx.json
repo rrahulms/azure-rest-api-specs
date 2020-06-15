@@ -2431,16 +2431,16 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/domains": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains": {
       "get": {
         "tags": [
-          "Domains"
+          "AFDXCustomDomains"
         ],
         "description": "Lists existing AFDX domains.",
-        "operationId": "Domains_ListByProfile",
+        "operationId": "AFDXCustomDomains_ListByProfile",
         "x-ms-examples": {
-          "Domains_ListByProfile": {
-            "$ref": "./examples/Domains_ListByProfile.json"
+          "AFDXCustomDomains_ListByProfile": {
+            "$ref": "./examples/AFDXCustomDomains_ListByProfile.json"
           }
         },
         "parameters": [
@@ -2465,7 +2465,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/DomainListResult"
+              "$ref": "#/definitions/AFDDomainListResult"
             }
           },
           "default": {
@@ -2480,16 +2480,16 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/domains/{domainName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{domainName}": {
       "get": {
         "tags": [
-          "Domains"
+          "AFDXCustomDomains"
         ],
         "description": "Gets an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
-        "operationId": "Domains_Get",
+        "operationId": "AFDXCustomDomains_Get",
         "x-ms-examples": {
-          "Domains_Get": {
-            "$ref": "./examples/Domains_Get.json"
+          "AFDXCustomDomains_Get": {
+            "$ref": "./examples/AFDXCustomDomains_Get.json"
           }
         },
         "parameters": [
@@ -2521,7 +2521,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           "default": {
@@ -2534,13 +2534,13 @@
       },
       "put": {
         "tags": [
-          "Domains"
+          "AFDXCustomDomains"
         ],
         "description": "Creates a new domain within the specified profile.",
-        "operationId": "Domains_Create",
+        "operationId": "AFDXCustomDomains_Create",
         "x-ms-examples": {
-          "Domains_Create": {
-            "$ref": "./examples/Domains_Create.json"
+          "AFDXCustomDomains_Create": {
+            "$ref": "./examples/AFDXCustomDomains_Create.json"
           }
         },
         "parameters": [
@@ -2567,7 +2567,7 @@
             "description": "Domain properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           {
@@ -2581,19 +2581,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new domain has been created.",
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           "default": {
@@ -2607,13 +2607,13 @@
       },
       "patch": {
         "tags": [
-          "Domains"
+          "AFDXCustomDomains"
         ],
         "description": "Updates an existing domain within a profile.",
-        "operationId": "Domains_Update",
+        "operationId": "AFDXCustomDomains_Update",
         "x-ms-examples": {
-          "Domains_Update": {
-            "$ref": "./examples/Domains_Update.json"
+          "AFDXCustomDomains_Update": {
+            "$ref": "./examples/AFDXCustomDomains_Update.json"
           }
         },
         "parameters": [
@@ -2640,7 +2640,7 @@
             "description": "Domain properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DomainUpdateParameters"
+              "$ref": "#/definitions/AFDDomainUpdateParameters"
             }
           },
           {
@@ -2654,13 +2654,13 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Domain"
+              "$ref": "#/definitions/AFDDomain"
             }
           },
           "default": {
@@ -2674,13 +2674,13 @@
       },
       "delete": {
         "tags": [
-          "Domains"
+          "AFDXCustomDomains"
         ],
         "description": "Deletes an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
-        "operationId": "Domains_Delete",
+        "operationId": "AFDXCustomDomains_Delete",
         "x-ms-examples": {
-          "Domains_Delete": {
-            "$ref": "./examples/Domains_Delete.json"
+          "AFDXCustomDomains_Delete": {
+            "$ref": "./examples/AFDXCustomDomains_Delete.json"
           }
         },
         "parameters": [
@@ -2725,16 +2725,16 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/domains/{domainName}/updateOwnershipIdentifier": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{domainName}/updateOwnershipIdentifier": {
       "post": {
         "tags": [
-          "Domains"
+          "AFDXCustomDomains"
         ],
         "description": "Updates the domain ownership identifier.",
-        "operationId": "Domains_UpdateOwnershipIdentifier",
+        "operationId": "AFDXCustomDomains_UpdateOwnershipIdentifier",
         "x-ms-examples": {
-          "Domains_Delete": {
-            "$ref": "./examples/Domains_UpdateOwnershipIdentifier.json"
+          "AFDXCustomDomains_Delete": {
+            "$ref": "./examples/AFDXCustomDomains_UpdateOwnershipIdentifier.json"
           }
         },
         "parameters": [
@@ -6519,7 +6519,7 @@
         "secret"
       ],
       "properties": {
-        "secret": {
+        "secretSource": {
           "description": "Resource reference to the KV secret",
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
@@ -8078,7 +8078,10 @@
             "Standard_Akamai",
             "Standard_ChinaCdn",
             "Standard_Microsoft",
-            "Premium_ChinaCdn"
+            "Premium_ChinaCdn",
+            "Standard_AFDX,",
+            "Premium_AFDX,",
+            "Enterprise_AFDX"
           ],
           "type": "string",
           "x-ms-enum": {
@@ -8120,14 +8123,14 @@
         }
       }
     },
-    "DomainListResult": {
+    "AFDDomainListResult": {
       "description": "Result of the request to list domains. It contains a list of domain objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/Domain"
+            "$ref": "#/definitions/AFDDomain"
           },
           "description": "List of AFDX domains within a profile."
         },
@@ -8137,7 +8140,7 @@
         }
       }
     },
-    "Domain": {
+    "AFDDomain": {
       "description": "Friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes, e.g. www.contoso.com.",
       "type": "object",
       "allOf": [
@@ -8148,38 +8151,22 @@
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/DomainProperties"
+          "$ref": "#/definitions/AFDDomainProperties"
         }
       }
     },
-    "DomainProperties": {
+    "AFDDomainProperties": {
       "description": "The JSON object that contains the properties of the domain to create.",
       "required": [
         "hostName"
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+          "$ref": "#/definitions/AFDDomainUpdatePropertiesParameters"
         }
       ],
       "properties": {
-        "domainProvisioningState": {
-          "description": "Provisioning status of the domain.",
-          "readOnly": true,
-          "enum": [
-            "Enabling",
-            "Enabled",
-            "Disabling",
-            "Disabled",
-            "Failed"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "CustomHttpsProvisioningState",
-            "modelAsString": true
-          }
-        },
-        "domainProvisioningSubstate": {
+        "domainValidationState": {
           "description": "Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step.",
           "readOnly": true,
           "enum": [
@@ -8191,39 +8178,7 @@
           ],
           "type": "string",
           "x-ms-enum": {
-            "name": "CustomHttpsProvisioningSubstate",
-            "modelAsString": true
-          }
-        },
-        "customHttpsProvisioningState": {
-          "description": "Provisioning status of Custom Https of the domain.",
-          "readOnly": true,
-          "enum": [
-            "Enabling",
-            "Enabled",
-            "Disabling",
-            "Disabled",
-            "Failed"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "CustomHttpsProvisioningState",
-            "modelAsString": true
-          }
-        },
-        "customHttpsProvisioningSubstate": {
-          "description": "Provisioning substate shows the progress of custom HTTPS enabling/disabling process step by step.",
-          "readOnly": true,
-          "enum": [
-            "IssuingCertificate",
-            "DeployingCertificate",
-            "CertificateDeployed",
-            "DeletingCertificate",
-            "CertificateDeleted"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "CustomHttpsProvisioningSubstate",
+            "name": "DomainValidationState",
             "modelAsString": true
           }
         },
@@ -8234,17 +8189,17 @@
         }
       }
     },
-    "DomainUpdateParameters": {
+    "AFDDomainUpdateParameters": {
       "description": "The domain JSON object required for domain creation or update.",
       "type": "object",
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/DomainUpdatePropertiesParameters"
+          "$ref": "#/definitions/AFDDomainUpdatePropertiesParameters"
         }
       }
     },
-    "DomainUpdatePropertiesParameters": {
+    "AFDDomainUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the domain to create.",
       "required": [
         "hostName"
@@ -8254,14 +8209,21 @@
           "description": "The host name of the domain. Must be a domain name.",
           "type": "string"
         },
-        "sslEnabled": {
-          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
-          "type": "boolean"
+        "dnsSettings": {
+          "description": "The configuration specifying how to set DNS configuraiton.",
+          "type": "object",
+          "$ref": "#/definitions/DNSSettingsParameters"
         },
-        "ipv4Only": {
-          "description": "IPv4 only frontend.",
-          "type": "boolean"
-        },
+        "domainHttps": {
+          "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
+          "type": "object",
+          "$ref": "#/definitions/AFDDomainHttpsParameters"
+        }
+      }
+    },
+    "DNSSettingsParameters": {
+      "description": "The JSON object that contains the DNS related settings.",
+      "properties": {
         "ownershipIdentifier": {
           "description": "Challenge used for DNS TXT record or file based validation",
           "readOnly": true,
@@ -8271,27 +8233,10 @@
           "description": "Resource reference to the Azure DNS zone",
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
-        },
-        "domainHttps": {
-          "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
-          "type": "object",
-          "$ref": "#/definitions/DomainHttpsParameters"
-        },
-        "state": {
-          "description": "Operational status of the Front Door load balancer. Permitted values are 'Enabled' or 'Disabled'",
-          "enum": [
-            "Enabled",
-            "Disabled"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "FrontDoorEnabledState",
-            "modelAsString": true
-          }
         }
       }
     },
-    "DomainHttpsParameters": {
+    "AFDDomainHttpsParameters": {
       "description": "The JSON object that contains the properties to secure a domain.",
       "discriminator": "certificateSource",
       "required": [
@@ -8299,7 +8244,11 @@
         "protocolType"
       ],
       "properties": {
-        "certificateSource": {
+        "sslEnabled": {
+          "description": "Indicates whether SSL should be enabled for this domain. TODO: Is this required for migration/backward compatibility",
+          "type": "boolean"
+        },
+        "certificateSourceType": {
           "description": "Defines the source of the SSL certificate.",
           "enum": [
             "AzureKeyVault",
@@ -8311,29 +8260,9 @@
             "modelAsString": true
           }
         },
-        "protocolType": {
-          "description": "Defines the TLS extension protocol that is used for secure delivery.",
-          "enum": [
-            "ServerNameIndication",
-            "IPBased"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "ProtocolType",
-            "modelAsString": true
-          }
-        },
-        "cipherSuites": {
-          "description": "List of supported cipher suites.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "minimumTlsVersion": {
           "description": "TLS protocol version that will be used for Https",
           "enum": [
-            "None",
             "TLS10",
             "TLS12"
           ],
@@ -8343,9 +8272,28 @@
             "modelAsString": false
           }
         },
-        "AutoRedirectToHttps": {
-          "description": "Redirect to https",
-          "type": "boolean"
+        "certificateSourceLocation": {
+          "description": "Resource reference to the KV secret",
+          "type": "object",
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "certificateIssuanceState": {
+          "description": "Issuance status of Custom Https of the domain.",
+          "readOnly": true,
+          "enum": [
+            "SubmittingDomainControlValidationRequest",
+            "PendingDomainControlValidationREquestApproval",
+            "DomainControlValidationRequestApproved",
+            "DomainControlValidationRequestRejected",
+            "DomainControlValidationRequestTimedOut",
+            "IssuingCertificate",
+            "CertificateIssued"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "CertificateIssuanceState",
+            "modelAsString": true
+          }
         }
       }
     },
