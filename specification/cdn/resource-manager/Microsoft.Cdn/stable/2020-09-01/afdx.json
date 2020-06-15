@@ -2434,13 +2434,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains": {
       "get": {
         "tags": [
-          "AFDXCustomDomains"
+          "AFDCustomDomains"
         ],
         "description": "Lists existing AFDX domains.",
-        "operationId": "AFDXCustomDomains_ListByProfile",
+        "operationId": "AFDCustomDomains_ListByProfile",
         "x-ms-examples": {
-          "AFDXCustomDomains_ListByProfile": {
-            "$ref": "./examples/AFDXCustomDomains_ListByProfile.json"
+          "AFDCustomDomains_ListByProfile": {
+            "$ref": "./examples/AFDCustomDomains_ListByProfile.json"
           }
         },
         "parameters": [
@@ -2483,13 +2483,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{domainName}": {
       "get": {
         "tags": [
-          "AFDXCustomDomains"
+          "AFDCustomDomains"
         ],
         "description": "Gets an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
-        "operationId": "AFDXCustomDomains_Get",
+        "operationId": "AFDCustomDomains_Get",
         "x-ms-examples": {
-          "AFDXCustomDomains_Get": {
-            "$ref": "./examples/AFDXCustomDomains_Get.json"
+          "AFDCustomDomains_Get": {
+            "$ref": "./examples/AFDCustomDomains_Get.json"
           }
         },
         "parameters": [
@@ -2534,13 +2534,13 @@
       },
       "put": {
         "tags": [
-          "AFDXCustomDomains"
+          "AFDCustomDomains"
         ],
         "description": "Creates a new domain within the specified profile.",
-        "operationId": "AFDXCustomDomains_Create",
+        "operationId": "AFDCustomDomains_Create",
         "x-ms-examples": {
-          "AFDXCustomDomains_Create": {
-            "$ref": "./examples/AFDXCustomDomains_Create.json"
+          "AFDCustomDomains_Create": {
+            "$ref": "./examples/AFDCustomDomains_Create.json"
           }
         },
         "parameters": [
@@ -2607,13 +2607,13 @@
       },
       "patch": {
         "tags": [
-          "AFDXCustomDomains"
+          "AFDCustomDomains"
         ],
         "description": "Updates an existing domain within a profile.",
-        "operationId": "AFDXCustomDomains_Update",
+        "operationId": "AFDCustomDomains_Update",
         "x-ms-examples": {
-          "AFDXCustomDomains_Update": {
-            "$ref": "./examples/AFDXCustomDomains_Update.json"
+          "AFDCustomDomains_Update": {
+            "$ref": "./examples/AFDCustomDomains_Update.json"
           }
         },
         "parameters": [
@@ -2674,13 +2674,13 @@
       },
       "delete": {
         "tags": [
-          "AFDXCustomDomains"
+          "AFDCustomDomains"
         ],
         "description": "Deletes an existing AFDX domain with the specified domain name under the specified subscription, resource group and profile.",
-        "operationId": "AFDXCustomDomains_Delete",
+        "operationId": "AFDCustomDomains_Delete",
         "x-ms-examples": {
-          "AFDXCustomDomains_Delete": {
-            "$ref": "./examples/AFDXCustomDomains_Delete.json"
+          "AFDCustomDomains_Delete": {
+            "$ref": "./examples/AFDCustomDomains_Delete.json"
           }
         },
         "parameters": [
@@ -2728,13 +2728,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{domainName}/updateOwnershipIdentifier": {
       "post": {
         "tags": [
-          "AFDXCustomDomains"
+          "AFDCustomDomains"
         ],
         "description": "Updates the domain ownership identifier.",
-        "operationId": "AFDXCustomDomains_UpdateOwnershipIdentifier",
+        "operationId": "AFDCustomDomains_UpdateOwnershipIdentifier",
         "x-ms-examples": {
-          "AFDXCustomDomains_Delete": {
-            "$ref": "./examples/AFDXCustomDomains_UpdateOwnershipIdentifier.json"
+          "AFDCustomDomains_Delete": {
+            "$ref": "./examples/AFDCustomDomains_UpdateOwnershipIdentifier.json"
           }
         },
         "parameters": [
