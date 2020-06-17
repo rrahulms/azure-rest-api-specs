@@ -2761,7 +2761,7 @@
             "description": "A JSON representation of the domain ownership properties.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DomainOwnershipIdentifier"
+              "type": "string"
             }
           },
           {
@@ -2773,16 +2773,10 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/DomainOwnershipIdentifier"
-            }
+            "description": "OK"
           },
           "202": {
-            "description": "Accepted",
-            "schema": {
-              "$ref": "#/definitions/DomainOwnershipIdentifier"
-            }
+            "description": "Accepted"
           },
           "default": {
             "description": "CDN error response describing why the operation failed.",
@@ -8214,7 +8208,7 @@
           "type": "object",
           "$ref": "#/definitions/DNSSettingsParameters"
         },
-        "domainHttps": {
+        "domainHttpsSettings": {
           "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
           "type": "object",
           "$ref": "#/definitions/AFDDomainHttpsParameters"
@@ -8283,29 +8277,14 @@
             "DomainControlValidationRequestRejected",
             "DomainControlValidationRequestTimedOut",
             "IssuingCertificate",
-            "CertificateIssued"
+            "CertificateIssued",
+            "CertificateRejected"
           ],
           "type": "string",
           "x-ms-enum": {
             "name": "CertificateIssuanceState",
             "modelAsString": true
           }
-        }
-      }
-    },
-    "DomainOwnershipIdentifier": {
-      "description": "Domain ownership Identifier.",
-      "type": "object",
-      "properties": {
-        "properties": {
-          "description": "DomainOwnershipIdentifier resource specific properties",
-          "properties": {
-            "ownershipId": {
-              "description": "Ownership Id.",
-              "type": "string"
-            }
-          },
-          "x-ms-client-flatten": true
         }
       }
     },
