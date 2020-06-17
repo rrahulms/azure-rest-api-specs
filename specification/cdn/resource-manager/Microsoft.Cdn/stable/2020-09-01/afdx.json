@@ -2480,7 +2480,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{domainName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{customDomainName}": {
       "get": {
         "tags": [
           "AFDCustomDomains"
@@ -2555,7 +2555,7 @@
             "type": "string"
           },
           {
-            "name": "domainName",
+            "name": "customDomainName",
             "in": "path",
             "description": "Name of the domain under the profile which is unique globally",
             "required": true,
@@ -2628,7 +2628,7 @@
             "type": "string"
           },
           {
-            "name": "domainName",
+            "name": "customDomainName",
             "in": "path",
             "description": "Name of the domain under the profile which is unique globally",
             "required": true,
@@ -2695,7 +2695,7 @@
             "type": "string"
           },
           {
-            "name": "domainName",
+            "name": "customDomainName",
             "in": "path",
             "description": "Name of the domain under the profile which is unique globally.",
             "required": true,
@@ -2725,7 +2725,7 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{domainName}/updateOwnershipIdentifier": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{customDomainName}/updateOwnershipIdentifier": {
       "post": {
         "tags": [
           "AFDCustomDomains"
