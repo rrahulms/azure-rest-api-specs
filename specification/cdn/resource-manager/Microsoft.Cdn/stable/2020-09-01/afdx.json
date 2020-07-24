@@ -2504,7 +2504,7 @@
             "type": "string"
           },
           {
-            "name": "domainName",
+            "name": "customDomainName",
             "in": "path",
             "description": "Name of the domain under the profile which is unique globally.",
             "required": true,
@@ -2749,7 +2749,7 @@
             "type": "string"
           },
           {
-            "name": "domainName",
+            "name": "customDomainName",
             "in": "path",
             "description": "Name of the domain under the profile which is unique globally.",
             "required": true,
@@ -3208,6 +3208,62 @@
         "x-ms-long-running-operation": true
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "Endpoints"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "AFDEndpoints_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/AFDEndpoints_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endpointName",
+            "in": "path",
+            "description": "Name of the endpoint under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups": {
       "get": {
         "tags": [
@@ -3500,6 +3556,62 @@
           }
         },
         "x-ms-long-running-operation": true
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}//originGroups/{originGroupName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "OriginGroups"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "AFDOriginGroups_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/AFDOriginGroups_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "originGroupName",
+            "in": "path",
+            "description": "Name of the origin group which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/originGroups/{originGroupName}/origins": {
@@ -3831,6 +3943,69 @@
         "x-ms-long-running-operation": true
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}//originGroups/{originGroupName}/origins/{originName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "AFDOrigins"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "AFDOrigins_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/AFDOrigins_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "originGroupName",
+            "in": "path",
+            "description": "Name of the origin group which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "originName",
+            "in": "path",
+            "description": "Name of the origin which is unique within the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/routes": {
       "get": {
         "tags": [
@@ -4160,6 +4335,69 @@
         "x-ms-long-running-operation": true
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/afdEndpoints/{endpointName}/routes/{routeName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "Routes"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "Routes_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/Routes_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endpointName",
+            "in": "path",
+            "description": "Name of the endpoint under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "routeName",
+            "in": "path",
+            "description": "Name of the routing rule.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets": {
       "get": {
         "tags": [
@@ -4452,6 +4690,62 @@
           }
         },
         "x-ms-long-running-operation": true
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "RuleSets"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "RuleSets_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/RuleSets_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}/rules": {
@@ -4783,6 +5077,69 @@
         "x-ms-long-running-operation": true
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/ruleSets/{ruleSetName}/rules/{ruleName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "Rules"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "Rules_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/Rules_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleSetName",
+            "in": "path",
+            "description": "Name of the rule set under the profile which is unique globally.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ruleName",
+            "in": "path",
+            "description": "Name of the delivery rule which is unique within the endpoint.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
       "get": {
         "tags": [
@@ -5075,6 +5432,326 @@
           }
         },
         "x-ms-long-running-operation": true
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys/{keyName}/checkResourceUsage": {
+      "post": {
+        "tags": [
+          "Keys"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "Keys_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/Keys_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyName",
+            "in": "path",
+            "description": "Name of the key under the profile.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/ResourceUsageListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/getLogAnalyticsMetrics": {
+      "post": {
+        "tags": [
+          "LogAnalytics"
+        ],
+        "operationId": "LogAnalytics_GetLogAnalyticsMetrics",
+        "x-ms-examples": {
+          "LogAnalytics_GetLogAnalyticsMetrics": {
+            "$ref": "./examples/LogAnalytics_GetLogAnalyticsMetrics.json"
+          }
+        },
+        "description": "This is a sample get operation, please see guidelines in azure-rest-api-specs repository for more info",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ProfileNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/MetricsRequestParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Describe the result of a successful operation.",
+            "schema": {
+              "$ref": "#/definitions/MetricsResponse"
+            }
+          },
+          "default": {
+            "description": "CDN Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/getLogAnalyticsRankings": {
+      "post": {
+        "tags": [
+          "LogAnalytics"
+        ],
+        "operationId": "LogAnalytics_GetLogAnalyticsRankings",
+        "x-ms-examples": {
+          "LogAnalytics_GetLogAnalyticsRankings": {
+            "$ref": "./examples/LogAnalytics_GetLogAnalyticsRankings.json"
+          }
+        },
+        "description": "This is a sample get operation, please see guidelines in azure-rest-api-specs repository for more info",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ProfileNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/RankingsRequestParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Describe the result of a successful operation.",
+            "schema": {
+              "$ref": "#/definitions/RankingsResponse"
+            }
+          },
+          "default": {
+            "description": "CDN Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/getLogAnalyticsLocations": {
+      "post": {
+        "tags": [
+          "LogAnalytics"
+        ],
+        "operationId": "LogAnalytics_GetLogAnalyticsLocations",
+        "x-ms-examples": {
+          "LogAnalytics_GetLogAnalyticsLocations": {
+            "$ref": "./examples/LogAnalytics_GetLogAnalyticsLocations.json"
+          }
+        },
+        "description": "This is a sample get operation, please see guidelines in azure-rest-api-specs repository for more info",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ProfileNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Describe the result of a successful operation.",
+            "schema": {
+              "$ref": "#/definitions/ContinentsResponse"
+            }
+          },
+          "default": {
+            "description": "CDN Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/getLogAnalyticsResources": {
+      "post": {
+        "tags": [
+          "LogAnalytics"
+        ],
+        "operationId": "LogAnalytics_GetLogAnalyticsResources",
+        "x-ms-examples": {
+          "LogAnalytics_GetLogAnalyticsResources": {
+            "$ref": "./examples/LogAnalytics_GetLogAnalyticsResources.json"
+          }
+        },
+        "description": "This is a sample get operation, please see guidelines in azure-rest-api-specs repository for more info",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ProfileNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Describe the result of a successful operation.",
+            "schema": {
+              "$ref": "#/definitions/ResourcesResponse"
+            }
+          },
+          "default": {
+            "description": "CDN Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/getWafLogAnalyticsMetrics": {
+      "post": {
+        "tags": [
+          "WafLogAnalytics"
+        ],
+        "operationId": "LogAnalytics_GetLogAnalyticsMetrics",
+        "x-ms-examples": {
+          "LogAnalytics_GetLogAnalyticsMetrics": {
+            "$ref": "./examples/LogAnalytics_GetLogAnalyticsMetrics.json"
+          }
+        },
+        "description": "This is a sample get operation, please see guidelines in azure-rest-api-specs repository for more info",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ProfileNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/WafMetricsRequestParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Describe the result of a successful operation.",
+            "schema": {
+              "$ref": "#/definitions/WafMetricsResponse"
+            }
+          },
+          "default": {
+            "description": "CDN Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/getWafLogAnalyticsRankings": {
+      "post": {
+        "tags": [
+          "WafLogAnalytics"
+        ],
+        "operationId": "LogAnalytics_GetLogAnalyticsRankings",
+        "x-ms-examples": {
+          "LogAnalytics_GetLogAnalyticsRankings": {
+            "$ref": "./examples/LogAnalytics_GetLogAnalyticsRankings.json"
+          }
+        },
+        "description": "This is a sample get operation, please see guidelines in azure-rest-api-specs repository for more info",
+        "parameters": [
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ProfileNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/WafRankingsRequestParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Describe the result of a successful operation.",
+            "schema": {
+              "$ref": "#/definitions/WafRankingsResponse"
+            }
+          },
+          "default": {
+            "description": "CDN Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
       }
     }
   },
