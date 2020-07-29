@@ -9365,23 +9365,6 @@
           "type": "string",
           "readOnly": true
         },
-        "resourceState": {
-          "description": "Resource status of the endpoint.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Deleting",
-            "Running",
-            "Starting",
-            "Stopped",
-            "Stopping"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "EndpointResourceState",
-            "modelAsString": true
-          }
-        },
         "provisioningState": {
           "readOnly": true,
           "description": "Provisioning status of the endpoint.",
@@ -9663,20 +9646,6 @@
         }
       ],
       "properties": {
-        "resourceState": {
-          "description": "Resource status of the origin.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "AFDOriginResourceState",
-            "modelAsString": true
-          }
-        },
         "provisioningState": {
           "readOnly": true,
           "description": "Provisioning status of the origin.",
@@ -9832,20 +9801,6 @@
         }
       ],
       "properties": {
-        "resourceState": {
-          "description": "Resource status of the origin group.",
-          "readOnly": true,
-          "enum": [
-            "Creating",
-            "Active",
-            "Deleting"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "AFDOriginGroupResourceState",
-            "modelAsString": true
-          }
-        },
         "provisioningState": {
           "readOnly": true,
           "description": "Provisioning status of the origin group.",
