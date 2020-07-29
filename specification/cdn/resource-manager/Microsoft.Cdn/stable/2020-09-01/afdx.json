@@ -2782,13 +2782,13 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains/{customDomainName}/usages": {
       "post": {
         "tags": [
-          "Keys"
+          "AFDCustomDomains"
         ],
         "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
-        "operationId": "Keys_ListResourceUsage",
+        "operationId": "AFDCustomDomains_ListResourceUsage",
         "x-ms-examples": {
           "Profiles_ListResourceUsage": {
-            "$ref": "./examples/Keys_ListResourceUsage.json"
+            "$ref": "./examples/AFDCustomDomains_ListResourceUsage.json"
           }
         },
         "parameters": [
@@ -8362,7 +8362,7 @@
           "maximum": 255,
           "minimum": 1
         },
-        "state": {
+        "enabledState": {
           "description": "Whether to enable health probes to be made against backends defined under backendPools. Health probes can only be disabled if there is a single enabled backend in single enabled backend pool.",
           "type": "string",
           "enum": [
@@ -9442,7 +9442,7 @@
           "minimum": 16,
           "exclusiveMinimum": false
         },
-        "state": {
+        "enabledState": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
           "enum": [
             "Enabled",
@@ -9726,10 +9726,28 @@
           "maximum": 1000,
           "minimum": 1
         },
-        "enabled": {
-          "description": "AFDOrigin is enabled for load balancing or not",
-          "type": "boolean"
+        "privateLinkSettings": {
+          "description": "Private link related settings",
+          "$ref": "#/definitions/PrivateLinkSettings"
         },
+        "enabledState": {
+          "description": "Whether to enable health probes to be made against backends defined under backendPools. Health probes can only be disabled if there is a single enabled backend in single enabled backend pool.",
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "x-ms-enum": {
+            "name": "HealthProbeState",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "PrivateLinkSettings":{
+      "description": "private link settings",
+      "type": "object",
+      "properties": {
         "privateLinkAlias": {
           "description": "The Alias of the Private Link resource. Populating this optional field indicates that this origin is 'Private'",
           "type": "string"
@@ -9745,18 +9763,6 @@
         "privateLinkApprovalMessage": {
           "description": "A custom message to be included in the approval request to connect to the Private Link.",
           "type": "string"
-        },
-        "state": {
-          "description": "Whether to enable health probes to be made against backends defined under backendPools. Health probes can only be disabled if there is a single enabled backend in single enabled backend pool.",
-          "type": "string",
-          "enum": [
-            "Enabled",
-            "Disabled"
-          ],
-          "x-ms-enum": {
-            "name": "HealthProbeState",
-            "modelAsString": true
-          }
         }
       }
     },
@@ -10005,7 +10011,7 @@
             "modelAsString": true
           }
         },
-        "state": {
+        "enableState": {
           "description": "Whether to enable use of this rule. Permitted values are 'Enabled' or 'Disabled'",
           "enum": [
             "Enabled",
