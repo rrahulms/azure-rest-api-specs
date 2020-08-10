@@ -2590,12 +2590,6 @@
               "$ref": "#/definitions/AFDDomain"
             }
           },
-          "202": {
-            "description": "Accepted",
-            "schema": {
-              "$ref": "#/definitions/AFDDomain"
-            }
-          },
           "default": {
             "description": "CDN error response describing why the operation failed.",
             "schema": {
@@ -2990,12 +2984,6 @@
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new endpoint has been created.",
-            "schema": {
-              "$ref": "#/definitions/AFDEndpoint"
-            }
-          },
-          "202": {
-            "description": "Accepted",
             "schema": {
               "$ref": "#/definitions/AFDEndpoint"
             }
@@ -3470,12 +3458,6 @@
               "$ref": "#/definitions/AFDOriginGroup"
             }
           },
-          "202": {
-            "description": "Accepted",
-            "schema": {
-              "$ref": "#/definitions/AFDOriginGroup"
-            }
-          },
           "default": {
             "description": "CDN error response describing why the operation failed.",
             "schema": {
@@ -3837,12 +3819,6 @@
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new origin has been created.",
-            "schema": {
-              "$ref": "#/definitions/AFDOrigin"
-            }
-          },
-          "202": {
-            "description": "Accepted",
             "schema": {
               "$ref": "#/definitions/AFDOrigin"
             }
@@ -4233,12 +4209,6 @@
               "$ref": "#/definitions/Route"
             }
           },
-          "202": {
-            "description": "Accepted",
-            "schema": {
-              "$ref": "#/definitions/Route"
-            }
-          },
           "default": {
             "description": "CDN error response describing why the operation failed.",
             "schema": {
@@ -4600,12 +4570,6 @@
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new rule set has been created.",
-            "schema": {
-              "$ref": "#/definitions/RuleSet"
-            }
-          },
-          "202": {
-            "description": "Accepted",
             "schema": {
               "$ref": "#/definitions/RuleSet"
             }
@@ -4975,12 +4939,6 @@
               "$ref": "#/definitions/Rule"
             }
           },
-          "202": {
-            "description": "Accepted",
-            "schema": {
-              "$ref": "#/definitions/Rule"
-            }
-          },
           "default": {
             "description": "CDN error response describing why the operation failed.",
             "schema": {
@@ -5342,12 +5300,6 @@
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new delivery rule has been created.",
-            "schema": {
-              "$ref": "#/definitions/Key"
-            }
-          },
-          "202": {
-            "description": "Accepted",
             "schema": {
               "$ref": "#/definitions/Key"
             }
