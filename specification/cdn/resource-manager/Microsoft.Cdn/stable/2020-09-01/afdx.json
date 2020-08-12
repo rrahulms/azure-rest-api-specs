@@ -9933,6 +9933,10 @@
           "type": "object",
           "$ref": "#/definitions/ResourceReference"
         },
+        "originPath": {
+          "description": "A directory path on the origin that AFDX can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
+          "type": "string"
+        },
         "ruleSet": {
           "description": "rule set referenced by this endpoint.",
           "type": "array",
@@ -9984,6 +9988,18 @@
           "type": "string",
           "x-ms-enum": {
             "name": "SessionAffinityEnabledState",
+            "modelAsString": true
+          }
+        },
+        "HTTPSRedirect": {
+          "description": "Whether to automatically redirect HTTP traffic to HTTPS traffic. Note that this is a easy way to set up this rule and it will be the first rule that gets executed.",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "HTTPSRedirect",
             "modelAsString": true
           }
         },
