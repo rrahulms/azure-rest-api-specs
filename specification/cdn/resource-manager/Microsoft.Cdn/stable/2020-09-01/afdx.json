@@ -5145,16 +5145,16 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/secrets": {
       "get": {
         "tags": [
-          "Keys"
+          "Secrets"
         ],
-        "description": "Lists existing AFDX keys.",
-        "operationId": "Keys_ListByProfile",
+        "description": "Lists existing AFDX secrets.",
+        "operationId": "Secrets_ListByProfile",
         "x-ms-examples": {
-          "Keys_ListByProfile": {
-            "$ref": "./examples/Keys_ListByProfile.json"
+          "Secrets_ListByProfile": {
+            "$ref": "./examples/Secrets_ListByProfile.json"
           }
         },
         "parameters": [
@@ -5179,7 +5179,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/KeyListResult"
+              "$ref": "#/definitions/SecretListResult"
             }
           },
           "default": {
@@ -5194,16 +5194,16 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys/{keyName}": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/secrets/{secretName}": {
       "get": {
         "tags": [
-          "Keys"
+          "Secrets"
         ],
-        "description": "Gets an existing key within a profile.",
-        "operationId": "Keys_Get",
+        "description": "Gets an existing Secret within a profile.",
+        "operationId": "Secrets_Get",
         "x-ms-examples": {
-          "Keys_Get": {
-            "$ref": "./examples/Keys_Get.json"
+          "Secrets_Get": {
+            "$ref": "./examples/Secrets_Get.json"
           }
         },
         "parameters": [
@@ -5218,9 +5218,9 @@
             "type": "string"
           },
           {
-            "name": "keyName",
+            "name": "secretName",
             "in": "path",
-            "description": "Name of the key under the profile.",
+            "description": "Name of the Secret under the profile.",
             "required": true,
             "type": "string"
           },
@@ -5235,7 +5235,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           },
           "default": {
@@ -5248,13 +5248,13 @@
       },
       "put": {
         "tags": [
-          "Keys"
+          "Secrets"
         ],
-        "description": "Creates a new key within the specified profile.",
-        "operationId": "Keys_Create",
+        "description": "Creates a new Secret within the specified profile.",
+        "operationId": "Secrets_Create",
         "x-ms-examples": {
-          "Keys_Create": {
-            "$ref": "./examples/Keys_Create.json"
+          "Secrets_Create": {
+            "$ref": "./examples/Secrets_Create.json"
           }
         },
         "parameters": [
@@ -5269,19 +5269,19 @@
             "type": "string"
           },
           {
-            "name": "keyName",
+            "name": "secretName",
             "in": "path",
-            "description": "Name of the key under the profile.",
+            "description": "Name of the Secret under the profile.",
             "required": true,
             "type": "string"
           },
           {
-            "name": "key",
+            "name": "secret",
             "in": "body",
-            "description": "The key properties.",
+            "description": "The Secret properties.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           },
           {
@@ -5295,19 +5295,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           },
           "201": {
             "description": "Created. The request has been fulfilled and a new delivery rule has been created.",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           },
           "default": {
             "description": "CDN error response describing why the operation failed.",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           }
         },
@@ -5315,13 +5315,13 @@
       },
       "patch": {
         "tags": [
-          "Keys"
+          "Secrets"
         ],
-        "description": "Updates an existing key within a profile.",
-        "operationId": "Keys_Update",
+        "description": "Updates an existing Secret within a profile.",
+        "operationId": "Secrets_Update",
         "x-ms-examples": {
-          "Keys_Update": {
-            "$ref": "./examples/Keys_Update.json"
+          "Secrets_Update": {
+            "$ref": "./examples/Secrets_Update.json"
           }
         },
         "parameters": [
@@ -5336,19 +5336,19 @@
             "type": "string"
           },
           {
-            "name": "keyName",
+            "name": "secretName",
             "in": "path",
-            "description": "Name of the key under the profile.",
+            "description": "Name of the Secret under the profile.",
             "required": true,
             "type": "string"
           },
           {
-            "name": "keyUpdateProperties",
+            "name": "secretUpdateProperties",
             "in": "body",
-            "description": "Key properties",
+            "description": "Secret properties",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/KeyUpdateParameters"
+              "$ref": "#/definitions/SecretUpdateParameters"
             }
           },
           {
@@ -5362,19 +5362,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           },
           "default": {
             "description": "CDN error response describing why the operation failed.",
             "schema": {
-              "$ref": "#/definitions/Key"
+              "$ref": "#/definitions/Secret"
             }
           }
         },
@@ -5382,13 +5382,13 @@
       },
       "delete": {
         "tags": [
-          "Keys"
+          "Secrets"
         ],
-        "description": "Deletes an existing key within profile.",
-        "operationId": "Keys_Delete",
+        "description": "Deletes an existing Secret within profile.",
+        "operationId": "Secrets_Delete",
         "x-ms-examples": {
-          "Keys_Delete": {
-            "$ref": "./examples/Keys_Delete.json"
+          "Secrets_Delete": {
+            "$ref": "./examples/Secrets_Delete.json"
           }
         },
         "parameters": [
@@ -5403,9 +5403,9 @@
             "type": "string"
           },
           {
-            "name": "keyName",
+            "name": "secretName",
             "in": "path",
-            "description": "Name of the key under the profile.",
+            "description": "Name of the Secret under the profile.",
             "required": true,
             "type": "string"
           },
@@ -5433,16 +5433,16 @@
         "x-ms-long-running-operation": true
       }
     },
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/keys/{keyName}/usages": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/secrets/{secretName}/usages": {
       "post": {
         "tags": [
-          "Keys"
+          "Secrets"
         ],
         "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
-        "operationId": "Keys_ListResourceUsage",
+        "operationId": "Secrets_ListResourceUsage",
         "x-ms-examples": {
           "Profiles_ListResourceUsage": {
-            "$ref": "./examples/Keys_ListResourceUsage.json"
+            "$ref": "./examples/Secrets_ListResourceUsage.json"
           }
         },
         "parameters": [
@@ -5457,9 +5457,9 @@
             "type": "string"
           },
           {
-            "name": "keyName",
+            "name": "secretName",
             "in": "path",
-            "description": "Name of the key under the profile.",
+            "description": "Name of the Secret under the profile.",
             "required": true,
             "type": "string"
           },
@@ -8012,6 +8012,52 @@
         }
       }
     },
+    "Certificate": {
+      "description": "Certificate used for https",
+      "properties": {
+        "Subject": {
+          "description": "Subject name in the certificate.",
+          "type": "string"
+        },
+        "Version": {
+          "description": "Certificate version.",
+          "type": "string"
+        },
+        "CertificateAuthority": {
+          "description": "Certificate issuing authority.",
+          "type": "string"
+        },
+        "ExpiryDate": {
+          "description": "Certificate expiration date.",
+          "type": "string"
+        },
+        "Thumbprint": {
+          "description": "Certificate thumbprint.",
+          "type": "string"
+        },
+        "DnsTxtRecordValue": {
+          "description": "DNS TXT record token.",
+          "type": "string"
+        }
+      }
+    },
+    "LinkedKeyvaults": {      
+      "description": "List of associated Keyvaults under the profile.",
+      "properties": {
+      "value": {
+        "type": "array",
+        "readOnly": true,
+        "items": {
+          "$ref": "#/definitions/KeyVaultCertificateSourceParameters"
+        },
+        "description": "List of linked Keyvaults for a profile."
+      },
+      "nextLink": {
+        "type": "string",
+        "description": "URL to get the next set of linked Keyvaults, if any."
+      }
+    }
+  },
     "LoadParameters": {
       "type": "object",
       "description": "Parameters required for content load.",
@@ -9455,25 +9501,25 @@
         "modelAsString": true
       }
     },
-    "KeyListResult": {
-      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+    "SecretListResult": {
+      "description": "Result of the request to list secrets. It contains a list of Secret objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
           "readOnly": true,
           "items": {
-            "$ref": "#/definitions/Key"
+            "$ref": "#/definitions/Secret"
           },
-          "description": "List of AFDX keys within a profile."
+          "description": "List of AFDX secrets within a profile."
         },
         "nextLink": {
           "type": "string",
-          "description": "URL to get the next set of key objects if there are any."
+          "description": "URL to get the next set of Secret objects if there are any."
         }
       }
     },
-    "Key": {
-      "description": "Friendly key name mapping to the any key or secret related information.",
+    "Secret": {
+      "description": "Friendly Secret name mapping to the any Secret or secret related information.",
       "type": "object",
       "allOf": [
         {
@@ -9483,25 +9529,26 @@
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/KeyProperties"
+          "$ref": "#/definitions/SecretProperties"
         }
       }
     },
-    "KeyProperties": {
-      "description": "The JSON object that contains the properties of the key to create.",
+    "SecretProperties": {
+      "description": "The JSON object that contains the properties of the Secret to create.",
       "required": [
         "type"
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/KeyUpdatePropertiesParameters"
+          "$ref": "#/definitions/SecretUpdatePropertiesParameters"
         }
       ],
       "properties": {
         "type": {
-          "description": "The type of the key to create.",
+          "description": "The type of the Secret to create.",
           "enum": [
-            "UrlSigningKey"
+            "UrlSigningKey",
+            "Certificate"
           ],
           "type": "string"
         },
@@ -9512,21 +9559,21 @@
         }
       }
     },
-    "KeyUpdateParameters": {
-      "description": "The domain JSON object required for key update.",
+    "SecretUpdateParameters": {
+      "description": "The domain JSON object required for Secret update.",
       "type": "object",
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/KeyUpdatePropertiesParameters"
+          "$ref": "#/definitions/SecretUpdatePropertiesParameters"
         }
       }
     },
-    "KeyUpdatePropertiesParameters": {
+    "SecretUpdatePropertiesParameters": {
       "description": "The JSON object that contains the properties of the domain to create."
     },
     "RuleSetListResult": {
-      "description": "Result of the request to list rule sets. It contains a list of key objects and a URL link to get the next set of results.",
+      "description": "Result of the request to list rule sets. It contains a list of rule set objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
@@ -9862,7 +9909,7 @@
       }
     },
     "RouteListResult": {
-      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "description": "Result of the request to list routes. It contains a list of route objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
@@ -9870,11 +9917,11 @@
           "items": {
             "$ref": "#/definitions/Route"
           },
-          "description": "List of AFDX keys within a profile."
+          "description": "List of AFDX routes within a profile."
         },
         "nextLink": {
           "type": "string",
-          "description": "URL to get the next set of key objects if there are any."
+          "description": "URL to get the next set of route objects if there are any."
         }
       }
     },
@@ -10018,7 +10065,7 @@
       }
     },
     "RuleListResult": {
-      "description": "Result of the request to list keys. It contains a list of key objects and a URL link to get the next set of results.",
+      "description": "Result of the request to list rules. It contains a list of rule objects and a URL link to get the next set of results.",
       "properties": {
         "value": {
           "type": "array",
@@ -10026,11 +10073,11 @@
           "items": {
             "$ref": "#/definitions/Rule"
           },
-          "description": "List of AFDX keys within a profile."
+          "description": "List of AFDX rules within a rule set."
         },
         "nextLink": {
           "type": "string",
-          "description": "URL to get the next set of key objects if there are any."
+          "description": "URL to get the next set of rule objects if there are any."
         }
       }
     },
