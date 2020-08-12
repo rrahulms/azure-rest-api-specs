@@ -2431,6 +2431,55 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/usages": {
+      "post": {
+        "tags": [
+          "AFDXProfiles"
+        ],
+        "description": "Checks the quota and actual usage of endpoints under the given CDN profile.",
+        "operationId": "AFDXProfiles_ListResourceUsage",
+        "x-ms-examples": {
+          "Profiles_ListResourceUsage": {
+            "$ref": "./examples/AFDXProfiles_ListResourceUsage.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/resourceGroupNameParameter"
+          },
+          {
+            "name": "profileName",
+            "in": "path",
+            "description": "Name of the CDN profile which is unique within the resource group.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/subscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/UsagesListResult"
+            }
+          },
+          "default": {
+            "description": "CDN error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/customdomains": {
       "get": {
         "tags": [
@@ -9119,7 +9168,12 @@
             "Premium_ChinaCdn",
             "Standard_AFDX,",
             "Premium_AFDX,",
-            "Enterprise_AFDX"
+            "Enterprise_AFDX",
+            "Standard_955BandWidth_ChinaCdn",
+            "Standard_AvgBandWidth_ChinaCdn",
+            "StandardPlus_ChinaCdn",
+            "StandardPlus_955BandWidth_ChinaCdn",
+            "StandardPlus_AvgBandWidth_ChinaCdn"
           ],
           "type": "string",
           "x-ms-enum": {
