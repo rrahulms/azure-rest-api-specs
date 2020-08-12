@@ -9369,15 +9369,6 @@
             "$ref": "#/definitions/ResourceReference"
           }
         },
-        "originGroup": {
-          "description": "A reference to the origin group.",
-          "type": "object",
-          "$ref": "#/definitions/ResourceReference"
-        },
-        "originPath": {
-          "description": "A directory path on the origin that AFDX can use to retrieve content from, e.g. contoso.cloudapp.net/originpath.",
-          "type": "string"
-        },
         "webApplicationFirewallPolicy": {
           "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
           "type": "object",
@@ -9385,6 +9376,13 @@
             "id": {
               "type": "string",
               "description": "Resource ID."
+            },
+            "patternsToMatch":{
+              "description": "Waf patterns to match.",
+              "type" : "array",
+              "items": {
+                "$ref": "#/definitions/WafPatternsToMatch"
+              }
             }
           }
         },
@@ -9422,6 +9420,26 @@
         "isCompressionEnabled": {
           "description": "Indicates whether content compression is enabled on AFDX. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AFDX when requested content is smaller than 1 byte or larger than 1 MB.",
           "type": "boolean"
+        }
+      }
+    },
+    "WafPatternsToMatch": {
+      "description": "settings for WAF patterns to match.",
+      "type": "object",
+      "properties": {
+        "domains": {
+          "description": "List of domains.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "paths": {
+          "description": "List of paths",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -9570,7 +9588,13 @@
       }
     },
     "RuleSetUpdatePropertiesParameters": {
-      "description": "The JSON object that contains the properties of the domain to create."
+      "description": "The JSON object that contains the properties of the domain to create.",
+      "properties": {
+        "order": {
+          "description": "The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}. A rule with a lesser order will be applied before a rule with a greater order. Rule with order 0 is a special rule. It does not require any condition and actions listed in it will always be applied.",
+          "type": "integer"
+        }
+      }
     },
     "AFDOrigin": {
       "description": "CDN origin is the source of the content being delivered via CDN. When the edge nodes represented by an endpoint do not have the requested content cached, they attempt to fetch it from one or more of the configured origins.",
@@ -9911,7 +9935,7 @@
         },
         "ruleSet": {
           "description": "rule set referenced by this endpoint.",
-          "type": "object",
+          "type": "array",
           "items": {
             "$ref": "#/definitions/ResourceReference"
           }
