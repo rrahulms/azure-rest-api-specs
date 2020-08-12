@@ -9471,7 +9471,7 @@
         },
         "webApplicationFirewallPolicy": {
           "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
-          "type": "object",
+          "type": "array",
           "properties": {
             "id": {
               "type": "string",
@@ -10044,11 +10044,6 @@
           "items": {
             "$ref": "#/definitions/ResourceReference"
           }
-        },
-        "webApplicationFirewallPolicy": {
-          "description": "A reference to the WAFs.",
-          "type": "object",
-          "$ref": "#/definitions/ResourceReference"
         },
         "supportedProtocols": {
           "description": "List of supported protocols for this route.",
