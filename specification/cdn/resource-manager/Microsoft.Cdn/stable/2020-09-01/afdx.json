@@ -9472,18 +9472,8 @@
         "webApplicationFirewallPolicy": {
           "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
           "type": "array",
-          "properties": {
-            "id": {
-              "type": "string",
-              "description": "Resource ID."
-            },
-            "patternsToMatch":{
-              "description": "Waf patterns to match.",
-              "type" : "array",
-              "items": {
-                "$ref": "#/definitions/WafPatternsToMatch"
-              }
-            }
+          "items": {
+            "$ref": "#/definitions/WAFPolicy"
           }
         },
         "originResponseTimeoutSeconds": {
@@ -9520,6 +9510,23 @@
         "isCompressionEnabled": {
           "description": "Indicates whether content compression is enabled on AFDX. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AFDX when requested content is smaller than 1 byte or larger than 1 MB.",
           "type": "boolean"
+        }
+      }
+    },
+    "WAFPolicy":{
+      "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Resource ID."
+        },
+        "patternsToMatch":{
+          "description": "Waf patterns to match.",
+          "type" : "array",
+          "items": {
+            "$ref": "#/definitions/WafPatternsToMatch"
+          }
         }
       }
     },
