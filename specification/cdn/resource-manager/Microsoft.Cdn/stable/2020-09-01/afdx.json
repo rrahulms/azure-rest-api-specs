@@ -9462,13 +9462,6 @@
     "AFDEndpointPropertiesUpdateParameters": {
       "description": "The JSON object containing endpoint update parameters.",
       "properties": {
-        "customDomains": {
-          "description": "Domains referenced by this endpoint.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ResourceReference"
-          }
-        },
         "webApplicationFirewallPolicy": {
           "description": "Defines the Web Application Firewall policy for the endpoint (if applicable)",
           "type": "array",
