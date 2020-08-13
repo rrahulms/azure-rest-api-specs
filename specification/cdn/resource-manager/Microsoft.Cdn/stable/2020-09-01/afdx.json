@@ -10014,6 +10014,9 @@
           "$ref": "#/definitions/RouteUpdatePropertiesParameters"
         }
       ],
+      "required": [
+        "originGroup"
+      ],
       "properties": {
         "provisioningState": {
           "readOnly": true,
