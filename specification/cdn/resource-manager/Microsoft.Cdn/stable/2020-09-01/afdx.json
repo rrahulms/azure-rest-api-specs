@@ -9306,7 +9306,7 @@
           "type": "object",
           "$ref": "#/definitions/DNSSettingsParameters"
         },
-        "domainHttpsSettings": {
+        "httpsSettings": {
           "description": "The configuration specifying how to enable HTTPS for the domain - using AFDX managed certificate or user's own certificate. If not specified, enabling ssl uses AFDX managed certificate by default.",
           "type": "object",
           "$ref": "#/definitions/AFDDomainHttpsParameters"
