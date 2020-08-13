@@ -9668,6 +9668,9 @@
     "RuleSetProperties": {
       "description": "The JSON object that contains the properties of the Rule Set to create.",
       "type": "object",
+      "required": [
+        "order"
+      ],
       "allOf": [
         {
           "$ref": "#/definitions/RuleSetUpdatePropertiesParameters"
@@ -9684,6 +9687,9 @@
     "RuleSetUpdateParameters": {
       "description": "The rule set JSON object required for rule set creation or update.",
       "type": "object",
+      "required": [
+        "order"
+      ],
       "allOf": [
         {
           "$ref": "#/definitions/RuleSetUpdatePropertiesParameters"
