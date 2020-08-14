@@ -9531,14 +9531,14 @@
           "description": "List of domains.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/ResourceReference"
           }
         },
         "paths": {
           "description": "List of paths",
           "type": "array",
           "items": {
-            "type": "string"
+            "type" : "string"
           }
         }
       }
