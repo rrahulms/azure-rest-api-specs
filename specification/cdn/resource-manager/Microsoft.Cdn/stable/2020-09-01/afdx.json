@@ -7957,6 +7957,93 @@
         }
       }
     },
+    "ManagedCertificate": {
+      "description": "Managed Certificate used for https",
+        "allOf": [
+        {
+          "$ref": "#/definitions/Certificate"
+        }
+      ],
+      "properties": {
+        "DnsTxtRecordValue": {
+          "description": "DNS TXT record token.",
+          "type": "string"
+        },
+        "certificateType": {
+          "description": "Type of certificate used",
+          "enum": [
+            "Shared",
+            "Dedicated"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "CertificateType",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "ByocCertificate": {
+      "description": "Customer Certificate used for https",
+        "allOf": [
+        {
+          "$ref": "#/definitions/Certificate"
+        }
+      ],
+      "required": [
+        "subscriptionId",
+        "resourceGroupName",
+        "vaultName",
+        "secretName",
+        "secretVersion",
+        "updateRule",
+        "deleteRule"
+      ],
+      "properties": {
+        "subscriptionId": {
+          "description": "Subscription Id of the user's Key Vault containing the SSL certificate",
+          "type": "string"
+        },
+        "resourceGroupName": {
+          "description": "Resource group of the user's Key Vault containing the SSL certificate",
+          "type": "string"
+        },
+        "vaultName": {
+          "description": "The name of the user's Key Vault containing the SSL certificate",
+          "type": "string"
+        },
+        "secretName": {
+          "description": "The name of Key Vault Secret (representing the full certificate PFX) in Key Vault.",
+          "type": "string"
+        },
+        "secretVersion": {
+          "description": "The version(GUID) of Key Vault Secret in Key Vault.",
+          "type": "string"
+        },
+        "updateRule": {
+          "description": "Describes the action that shall be taken when the certificate is updated in Key Vault.",
+          "type": "string",
+          "enum": [
+            "NoAction"
+          ],
+          "x-ms-enum": {
+            "name": "UpdateRule",
+            "modelAsString": true
+          }
+        },
+        "deleteRule": {
+          "description": "Describes the action that shall be taken when the certificate is removed from Key Vault.",
+          "type": "string",
+          "enum": [
+            "NoAction"
+          ],
+          "x-ms-enum": {
+            "name": "DeleteRule",
+            "modelAsString": true
+          }
+        }
+      }
+    },
     "LinkedKeyvaults": {      
       "description": "List of associated Keyvaults under the profile.",
       "properties": {
@@ -7964,7 +8051,7 @@
         "type": "array",
         "readOnly": true,
         "items": {
-          "$ref": "#/definitions/KeyVaultCertificateSourceParameters"
+          "$ref": "#/definitions/Secret"
         },
         "description": "List of linked Keyvaults for a profile."
       },
@@ -8520,32 +8607,12 @@
         }
       ],
       "required": [
-        "certificateSourceParameters"
+        "certificate"
       ],
       "properties": {
-        "certificateSourceParameters": {
-          "description": "Defines the certificate source parameters using CDN managed certificate for enabling SSL.",
-          "$ref": "#/definitions/CdnCertificateSourceParameters"
-        }
-      }
-    },
-    "CdnCertificateSourceParameters": {
-      "description": "Defines the parameters for using CDN managed certificate for securing custom domain.",
-      "required": [
-        "certificateType"
-      ],
-      "properties": {
-        "certificateType": {
-          "description": "Type of certificate used",
-          "enum": [
-            "Shared",
-            "Dedicated"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "CertificateType",
-            "modelAsString": true
-          }
+        "certificate": {
+          "description": "The certificate used for enabling SSL.",
+          "$ref": "#/definitions/ManagedCertificate"
         }
       }
     },
@@ -8558,68 +8625,12 @@
         }
       ],
       "required": [
-        "certificateSourceParameters"
+        "certificate"
       ],
       "properties": {
-        "certificateSourceParameters": {
-          "description": "Defines the certificate source parameters using user's keyvault certificate for enabling SSL.",
-          "$ref": "#/definitions/KeyVaultCertificateSourceParameters"
-        }
-      }
-    },
-    "KeyVaultCertificateSourceParameters": {
-      "description": "Describes the parameters for using a user's KeyVault certificate for securing custom domain.",
-      "required": [
-        "subscriptionId",
-        "resourceGroupName",
-        "vaultName",
-        "secretName",
-        "secretVersion",
-        "updateRule",
-        "deleteRule"
-      ],
-      "properties": {
-        "subscriptionId": {
-          "description": "Subscription Id of the user's Key Vault containing the SSL certificate",
-          "type": "string"
-        },
-        "resourceGroupName": {
-          "description": "Resource group of the user's Key Vault containing the SSL certificate",
-          "type": "string"
-        },
-        "vaultName": {
-          "description": "The name of the user's Key Vault containing the SSL certificate",
-          "type": "string"
-        },
-        "secretName": {
-          "description": "The name of Key Vault Secret (representing the full certificate PFX) in Key Vault.",
-          "type": "string"
-        },
-        "secretVersion": {
-          "description": "The version(GUID) of Key Vault Secret in Key Vault.",
-          "type": "string"
-        },
-        "updateRule": {
-          "description": "Describes the action that shall be taken when the certificate is updated in Key Vault.",
-          "type": "string",
-          "enum": [
-            "NoAction"
-          ],
-          "x-ms-enum": {
-            "name": "UpdateRule",
-            "modelAsString": true
-          }
-        },
-        "deleteRule": {
-          "description": "Describes the action that shall be taken when the certificate is removed from Key Vault.",
-          "type": "string",
-          "enum": [
-            "NoAction"
-          ],
-          "x-ms-enum": {
-            "name": "DeleteRule",
-            "modelAsString": true
-          }
+        "certificate": {
+          "description": "Defines the certificate from the user's keyvault for enabling SSL.",
+          "$ref": "#/definitions/ByocCertificate"
         }
       }
     },
@@ -9455,7 +9466,8 @@
           "description": "The type of the Secret to create.",
           "enum": [
             "UrlSigningKey",
-            "Certificate"
+            "ByocCertificate",
+            "ManagedCertificate"
           ],
           "type": "string"
         },
